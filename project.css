@@ -1,6 +1,12 @@
 /* ===================== PROJECT CASE-STUDY PAGE ===================== */
 :root { --ind: #4F46E5; --ind-soft: #ECECF8; --pc-lav: #edecf8; }
 
+/* Contain any stray-wide element (carousels, mockups, decorative paw prints) so
+   the page never scrolls sideways — on phones an unclipped overflow makes Safari
+   shrink the whole page into a narrow column. `clip` doesn't create a scroll
+   container, so the sticky nav is unaffected. */
+html { overflow-x: clip; }
+
 .pc-nav { position: sticky; top: 0; z-index: 60; background: rgba(255, 255, 255, .82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .pc-nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 16px var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
 .dark .pc-nav { background: rgba(18, 18, 24, .8); }
@@ -372,6 +378,15 @@
   .pc-fig img, .hk-design-row img, .hk-ai-row img, .hk-screens img { max-width: 100%; height: auto; }
   .hk-flow-fig img { width: 100%; max-width: 100%; margin-left: 0; }
   .hk-screens { grid-template-columns: 1fr 1fr; }
+  /* show framed screenshots full width (were shrunk to ~210px by the desktop
+     `calc(100% - 180px)` rule) */
+  .pc-browser.sm { max-width: 100%; }
+  /* carousel: show the whole screenshot instead of a cropped fixed-height band */
+  .pc-car-slide .pc-browser img { height: auto; }
+  /* Next-project footer: stack it so the "View Project" button sits below the
+     title/body on its own line instead of being squeezed on the right */
+  .pc-next { flex-direction: column; align-items: flex-start; gap: 22px; }
+  .pc-next .btn-pill { white-space: nowrap; }
 }
 @media (max-width: 400px) {
   .hk-screens { grid-template-columns: 1fr; max-width: 220px; margin-inline: auto; }

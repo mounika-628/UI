@@ -57,6 +57,12 @@
     .mdstep li b { display: block; color: #23232b; font-size: 14px; font-weight: 700; }
     .mdstep li small { display: block; font-size: 11.5px; color: #9a9488; margin-top: 1px; }
     .mdstep li.active { background: #FEF3D7; border-color: #f3dcae; }
+    /* on phones the 3 steps can't sit side by side — stack them vertically */
+    @media (max-width: 600px) {
+      .mdstep { flex-direction: column; gap: 14px; }
+      .mdstep li:not(:last-child) { margin-right: 0; }
+      .mdstep li:not(:last-child)::after { display: none; }
+    }
     /* progress bar */
     .mdprog-label { font-size: 12.5px; color: #6b6b76; margin-bottom: 8px; font-weight: 600; }
     .mdprog { height: 8px; border-radius: 999px; background: #efece4; overflow: hidden; width: 100%; }
