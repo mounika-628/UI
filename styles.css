@@ -191,8 +191,14 @@ section { padding-left: var(--pad); padding-right: var(--pad); }
 @keyframes t2travelL { 0% { opacity: 0; transform: translateX(0) scale(.55); } 14% { opacity: 1; } 75% { opacity: 1; transform: translateX(400px) scale(1); } 100% { opacity: 0; transform: translateX(400px) scale(.4); } }
 @keyframes t2travelR { 0% { opacity: 0; transform: translateX(0) scale(.55); } 14% { opacity: 1; } 75% { opacity: 1; transform: translateX(-400px) scale(1); } 100% { opacity: 0; transform: translateX(-400px) scale(.4); } }
 
-@media (max-width: 980px) { .trio2-stage { transform: scale(.72); } }
-@media (max-width: 680px) { .trio2-stage { transform: scale(.46); } }
+/* The stage keeps its intrinsic 920px coordinate system (flex:none + max-width:none)
+   so the circles/line stay correctly spaced; transform:scale then shrinks it to fit.
+   Without flex:none the flex item shrinks to the viewport while its children keep
+   920px coordinates, throwing the right circle off-screen. .trio2 (overflow:hidden)
+   clips the scaled-down stage, so no horizontal scroll. */
+@media (max-width: 980px) { .trio2-stage { flex: none; max-width: none; transform: scale(.72); } }
+@media (max-width: 680px) { .trio2-stage { transform: scale(.5); } }
+@media (max-width: 520px) { .trio2-stage { transform: scale(.4); } }
 @media (prefers-reduced-motion: reduce) {
   .trio2 .t2-dot { display: none; }
   .trio2.play .t2-circle { animation: none; transform: scale(1); opacity: 1; }
@@ -492,6 +498,12 @@ img.capx-img.is-active { animation: capxFloat 5.5s ease-in-out infinite; }
   .service-body { grid-template-columns: 1fr; }
   .service-list { padding-left: 0; }
   .work-grid { grid-template-columns: 1fr; }
+  /* Once the project cards stack full-width, the desktop "peek" crop (132% wide,
+     anchored bottom-right) chops the mockup in half. Show the whole mockup,
+     centred at the bottom of the card instead. */
+  .card-shot img { width: 100%; left: 50%; right: auto; transform: translateX(-50%); object-position: center bottom; }
+  .card-blue .card-shot img { right: auto; }
+  .card-purple .card-shot img { width: 78%; top: auto; bottom: 0; object-position: center bottom; }
   .about-card { grid-template-columns: 1fr; padding: 32px; }
   .about-photo { height: 300px; }
   .footer-bottom { grid-template-columns: 1fr; }
