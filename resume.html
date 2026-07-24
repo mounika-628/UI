@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mounika Reddy Madduri · Resume</title>
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #16161c;
+      --muted: #5b5b66;
+      --line: #e4e4ec;
+      --accent: #4f46e5;
+      --page: #f3f3f7;
+    }
+    html.dark { --page: #0d0d13; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Poppins", system-ui, sans-serif; color: var(--ink); background: var(--page); line-height: 1.5; -webkit-font-smoothing: antialiased; padding: 40px 16px; transition: background-color .35s ease; overflow-x: hidden; }
+
+    .toolbar { max-width: 820px; margin: 0 auto 18px; display: flex; justify-content: flex-end; gap: 10px; }
+    .toolbar a, .toolbar button { font-family: inherit; font-size: 13px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 9px 18px; cursor: pointer; text-decoration: none; transition: background .2s, color .2s; }
+    .toolbar button { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .toolbar a:hover { background: #f0f0f5; }
+    html.dark .toolbar a { background: #17171f; color: #ededf3; border-color: #2c2c3a; }
+    html.dark .toolbar a:hover { background: #22222e; }
+    html.dark .toolbar button { background: #ededf3; color: #14141a; border-color: #ededf3; }
+
+    .bg-dots { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    .sheet { position: relative; max-width: 820px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 24px 60px rgba(20,20,40,.10); padding: 52px 56px; }
+
+    header.r-head { text-align: center; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+    header.r-head h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; }
+    header.r-head .contact { margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+    header.r-head .contact a { color: var(--muted); text-decoration: none; border-bottom: 1px solid #c9c9d3; }
+    header.r-head .contact a:hover { color: var(--ink); }
+    header.r-head .sep { margin: 0 8px; color: #c3c3cc; }
+
+    section.blk { margin-top: 24px; }
+    h2.blk-t { font-size: 14px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); border-bottom: 1.5px solid var(--line); padding-bottom: 6px; margin-bottom: 12px; }
+
+    p.summary { font-size: 14px; color: #33333c; }
+
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .row .left { font-weight: 700; font-size: 15px; }
+    .row .left .sub { font-weight: 500; color: #33333c; }
+    .row .right { font-size: 13px; color: var(--muted); white-space: nowrap; font-weight: 500; }
+    .place { font-size: 13px; color: var(--muted); }
+    .entry { margin-bottom: 15px; }
+    .entry:last-child { margin-bottom: 0; }
+    .role { font-size: 14px; font-weight: 600; color: var(--accent); }
+
+    ul.bul { list-style: none; margin: 7px 0 0; }
+    ul.bul li { position: relative; padding-left: 16px; font-size: 13.3px; color: #33333c; margin-top: 5px; }
+    ul.bul li::before { content: ""; position: absolute; left: 2px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    b { font-weight: 700; color: var(--ink); }
+
+    .tag { display: inline-block; font-size: 11.5px; font-weight: 600; color: var(--accent); background: #eeecfb; border-radius: 6px; padding: 2px 9px; margin-left: 8px; vertical-align: middle; }
+
+    .skills p { font-size: 13.3px; color: #33333c; margin-top: 7px; }
+    .skills p:first-child { margin-top: 0; }
+    .skills b { color: var(--ink); }
+
+    @media (max-width: 640px) {
+      body { padding: 16px 8px; }
+      .sheet { padding: 30px 22px; }
+      .row { flex-direction: column; }
+      .row .right { white-space: normal; }
+    }
+    @media (max-width: 460px) {
+      .toolbar { flex-wrap: wrap; }
+      .sheet { padding: 24px 16px; }
+      header.r-head h1 { font-size: clamp(22px, 8vw, 30px); }
+      header.r-head .contact { font-size: 12.5px; }
+      header.r-head .sep { margin: 0 5px; }
+      .row .left { font-size: 14px; }
+      .tag { display: inline-block; margin: 4px 0 0 0; }
+      ul.bul li { font-size: 12.8px; }
+    }
+
+    @media print {
+      @page { margin: 14mm; }
+      body { background: #fff; padding: 0; }
+      .toolbar, .bg-dots { display: none; }
+      .sheet { max-width: none; border: none; border-radius: 0; box-shadow: none; padding: 0; }
+      section.blk { break-inside: avoid; }
+      .entry { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="bg-dots" aria-hidden="true"></canvas>
+  <div class="toolbar">
+    <a href="index.html">← Back to portfolio</a>
+    <button onclick="window.print()">Download PDF</button>
+  </div>
+
+  <div class="sheet">
+    <header class="r-head">
+      <h1>Mounika Reddy Madduri</h1>
+      <div class="contact">
+        San Jose, CA <span class="sep">|</span> +1 732 762 7792 <span class="sep">|</span>
+        <a href="mailto:mounika.iicd@gmail.com">mounika.iicd@gmail.com</a> <span class="sep">|</span>
+        <a href="https://www.linkedin.com/in/mounika-reddy-madduri-44a389281" target="_blank" rel="noopener">LinkedIn</a> <span class="sep">|</span>
+        <a href="index.html">Portfolio</a>
+      </div>
+    </header>
+
+    <section class="blk">
+      <h2 class="blk-t">Summary</h2>
+      <p class="summary">UX and product designer with a Human Factors and Ergonomics foundation, blending user research, interaction design, and AI-driven experiences to make complex products feel calm, clear, and trustworthy. Experienced designing end to end across enterprise security, consumer web, and mobile, from research and information architecture through high-fidelity design systems and usability testing.</p>
+    </section>
+
+    <section class="blk">
+      <h2 class="blk-t">Education</h2>
+      <div class="entry">
+        <div class="row">
+          <div class="left">San Jose State University</div>
+          <div class="right">Aug 2025 to May 2027</div>
+        </div>
+        <div class="place">Master of Science, Human Factors and Ergonomics (UX Concentration) · San Jose, CA</div>
+      </div>
+      <div class="entry">
+        <div class="row">
+          <div class="left">Indian Institute of Crafts and Design (IICD)</div>
+          <div class="right">June 2018 to July 2023</div>
+        </div>
+        <div class="place">Bachelor of Design, Integrated Master of Design · GPA 4 / 4 · Jaipur, India</div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="blk-t">Professional Experience</h2>
+      <div class="entry">
+        <div class="row">
+          <div class="left">Johnson &amp; Johnson <span class="sub">· UI/UX Designer</span></div>
+          <div class="right">Apr 2024 to July 2025</div>
+        </div>
+        <ul class="bul">
+          <li>Led the end-to-end design of an <b>Identity Governance application</b>, improving security workflows and reducing user friction through intuitive, user-centered interfaces.</li>
+          <li>Conducted <b>user research, task analysis, and usability evaluations</b> to uncover pain points and inform data-driven design decisions that enhanced overall system usability.</li>
+          <li>Designed <b>wireframes, high-fidelity prototypes, and design system components</b>, ensuring a consistent visual language and scalable UI patterns across the application.</li>
+          <li>Collaborated with developers, product managers, and stakeholders to translate complex technical requirements into clear interaction flows and accessible design solutions.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="row">
+          <div class="left">PixelWave Technologies <span class="sub">· Product Designer</span></div>
+          <div class="right">Nov 2023 to Apr 2024</div>
+        </div>
+        <ul class="bul">
+          <li>Designed the company's <b>brand identity and website</b>, delivering a cohesive and visually appealing user experience.</li>
+          <li>Conducted usability tests and shipped <b>design improvements</b> that enhanced website functionality and user engagement.</li>
+          <li>Created responsive landing pages and user-centered digital experiences, wireframing and prototyping in <b>Figma and Adobe XD</b>.</li>
+          <li>Collaborated with cross-functional teams to deliver effective, visually compelling digital solutions and strengthen the company's online presence.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="blk-t">Projects</h2>
+
+      <div class="entry">
+        <div class="row">
+          <div class="left">MatchDog, AI Dog-Adoption Platform <span class="tag">Web · UX · IA</span></div>
+        </div>
+        <ul class="bul">
+          <li>Designed the consumer website for an AI-powered platform that matches adopters to dogs by <b>lifestyle, not looks</b>.</li>
+          <li>Owned the <b>information architecture</b>, the AI match-quiz and adoption flows, the dog-browsing experience, and the full visual system.</li>
+          <li>Framed success around outcomes over signups, designing for the right adoption rather than the most conversions.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <div class="left">RockX, Immersive Museum Companion App <span class="tag">Mobile · AR · UI</span></div>
+        </div>
+        <ul class="bul">
+          <li>Designed an <b>AR-led mobile companion</b> for a rock-music museum that builds each visitor a personalized tour.</li>
+          <li>Created AR wayfinding with a live mini-map, an AI tour planner, interactive exhibit and live-concert experiences, ticketing, merch, and community.</li>
+          <li>Delivered end-to-end flows, a dark high-contrast visual system, and a reusable component library.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <div class="left">Hearty Kitchen, Driver App for a Meal-Kit Service <span class="tag">Mobile · Service · Testing</span></div>
+        </div>
+        <ul class="bul">
+          <li>Designed the driver-facing app for a wellness meal-kit service, covering <b>pickup, routing, delivery, and payouts</b>.</li>
+          <li>Mapped the service blueprint and driver journey, then designed the delivery flow, an <b>AI reroute</b> for faster on-time delivery, and honest, transparent earnings.</li>
+          <li>Ran moderated usability tests (<b>SUS 72.5</b>, above the 68 benchmark) and shipped iterations that made problem-reporting reachable, surfaced the optimized route, and clarified pay.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <div class="left">Business Insights Dashboard <span class="tag">UX · Data Viz</span></div>
+        </div>
+        <ul class="bul">
+          <li>Designed an intuitive analytics dashboard for small-business owners to track expenses, cash flow, and revenue trends in real time, with dynamic charts, customizable reports, and filterable transaction views.</li>
+          <li>Ran usability interviews to surface pain points like information overload, then <b>improved task success rate by 42%</b> by simplifying navigation and reorganizing the information hierarchy.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="row">
+          <div class="left">AI Task Assistant App <span class="tag">Mobile · AI · UX</span></div>
+        </div>
+        <ul class="bul">
+          <li>Designed an AI-powered mobile assistant that auto-organizes tasks with natural-language input, smart reminders, and priority prediction; delivered high-fidelity flows and prototypes in Figma.</li>
+          <li>Through user interviews and usability tests, <b>improved task-creation efficiency and perceived productivity by 60%</b> with simplified interactions and intelligent planning.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="blk skills">
+      <h2 class="blk-t">Skills</h2>
+      <p><b>Design Tools:</b> Figma, Adobe XD, Sketch, InVision, Miro, FigJam, Axure RP, Balsamiq, Photoshop, Illustrator, InDesign, Premiere Pro, After Effects, SketchUp, AutoCAD</p>
+      <p><b>Frameworks &amp; Methods:</b> Design Thinking, User-Centered Design, Double Diamond, Lean UX, Agile/Scrum, Service Design, Systems Thinking, Jobs-To-Be-Done</p>
+      <p><b>Research:</b> Usability Testing, Human Factors Engineering, Human-Computer Interaction, Human-AI Interaction, Design Research Methods, Cognitive Psychology, Experimental Research Methods, Statistics, Data Visualization</p>
+    </section>
+  </div>
+
+  <script>
+    // Interactive gradient node background, matching the rest of the site.
+    (function bgDots() {
+      const canvas = document.querySelector(".bg-dots");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      const GAP = 26, RAD = 110, RAD2 = RAD * RAD, STR = 2.2, SPRING = 0.06, DAMP = 0.85;
+      let W = 0, H = 0, dots = [], mx = -1e4, my = -1e4, mouseIn = false;
+      const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+      function gcol(x) {
+        let t = Math.max(0, Math.min(1, x / (W || 1)));
+        if (t < 0.5) { t *= 2; return `rgb(${lerp(241,142,t)},${lerp(92,51,t)},${lerp(77,224,t)})`; }
+        t = (t - 0.5) * 2; return `rgb(${lerp(142,75,t)},${lerp(51,79,t)},${lerp(224,230,t)})`;
+      }
+      function build() {
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.style.width = W + "px"; canvas.style.height = H + "px";
+        canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        dots = [];
+        for (let gy = 0; gy < H + GAP; gy += GAP) for (let gx = 0; gx < W + GAP; gx += GAP) {
+          const x = gx + (Math.random() - 0.5) * GAP * 1.25, y = gy + (Math.random() - 0.5) * GAP * 1.25;
+          dots.push({ hx: x, hy: y, ox: 0, oy: 0, vx: 0, vy: 0, size: 0.6 + Math.random() * 1.8, a: 0.22 + Math.random() * 0.42, col: gcol(x) });
+        }
+      }
+      function frame() {
+        ctx.clearRect(0, 0, W, H);
+        for (const d of dots) {
+          if (mouseIn) {
+            const ddx = (d.hx + d.ox) - mx, ddy = (d.hy + d.oy) - my, dd = ddx * ddx + ddy * ddy;
+            if (dd < RAD2) { const dist = Math.sqrt(dd) || 1, f = (1 - dist / RAD) * STR; d.vx += (ddx / dist) * f; d.vy += (ddy / dist) * f; }
+          }
+          d.vx = (d.vx - d.ox * SPRING) * DAMP; d.vy = (d.vy - d.oy * SPRING) * DAMP;
+          d.ox += d.vx; d.oy += d.vy;
+          ctx.globalAlpha = d.a; ctx.fillStyle = d.col;
+          ctx.fillRect(d.hx + d.ox - d.size / 2, d.hy + d.oy - d.size / 2, d.size, d.size);
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(frame);
+      }
+      build();
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        for (const d of dots) { ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx - d.size / 2, d.hy - d.size / 2, d.size, d.size); }
+        ctx.globalAlpha = 1;
+      } else {
+        window.addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; mouseIn = true; });
+        document.addEventListener("pointerleave", () => { mouseIn = false; });
+        requestAnimationFrame(frame);
+      }
+      let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+    })();
+  </script>
+</body>
+</html>

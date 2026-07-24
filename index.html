@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mounika · UX Designer Portfolio</title>
+  <meta name="description" content="UX designer combining human factors research with technology to build experiences people love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+</head>
+<body>
+  <canvas class="bg-dots" aria-hidden="true"></canvas>
+  <div class="flyorbs" aria-hidden="true"><span class="flyorb red"></span><span class="flyorb blue"></span></div>
+  <div class="flyorbs2" aria-hidden="true"><span class="forb red"></span><span class="forb purple"></span><span class="forb blue"></span></div>
+  <div class="flyorbs3" aria-hidden="true"><span class="forb3 red"></span><span class="forb3 blue"></span><span class="forb3 purple"></span></div>
+  <div class="flyorbs4" aria-hidden="true"><span class="forb4 red"></span><span class="forb4 blue"></span><span class="forb4 purple"></span></div>
+  <div class="flyorbs5" aria-hidden="true"><span class="forb5 red"></span><span class="forb5 purple"></span><span class="forb5 blue"></span></div>
+  <div class="flyorbs6" aria-hidden="true"><span class="forb6 red"></span><span class="forb6 purple"></span><span class="forb6 blue"></span></div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="nav-wrap">
+    <nav class="nav">
+      <a href="#top" class="nav-logo">
+        <span class="logo-mark"></span>
+        <span class="nav-brand"><strong>Mounika</strong></span>
+      </a>
+      <div class="nav-end">
+        <ul class="nav-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="4" /><g stroke-width="1.6"><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.5" y1="4.5" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.5" y2="19.5"/><line x1="4.5" y1="19.5" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.5" y2="4.5"/></g></svg>
+            <svg class="moon" viewBox="0 0 24 24" width="18" height="18"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" /></svg>
+          </button>
+          <a href="#contact" class="btn-pill btn-dark btn-swap"><span class="swap"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero-main">
+        <div class="hero-art" aria-hidden="true">
+          <canvas class="virgo-canvas"></canvas>
+          <img src="face.png" alt="" class="virgo-img" />
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Hi, I'm Mounika and I like to</p>
+          <h1 class="hero-title">Transform Human Behavior Into Product Decisions<span class="accent-dot">.</span></h1>
+          <p class="hero-sub">I blend human factors research, data and design to create experiences that are intuitive, effective and truly meaningful.</p>
+          <div class="hero-cta">
+            <a href="#work" class="btn-pill btn-dark">View My Work</a>
+            <a href="#contact" class="btn-pill btn-ghost">Let's Connect</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="#work" class="scroll-hint"><span>Scroll to explore</span><span class="scroll-arrow">&darr;</span></a>
+    </section>
+
+    <!-- ===================== EXPERTISE TICKER ===================== -->
+    <section class="ticker-row" aria-label="Skills and expertise">
+      <span class="ticker-label">What I excel at</span>
+      <div class="ticker-viewport">
+        <div class="ticker-track">
+          <span>Human-Centric Design</span><span>Human Factors</span><span>UX Research</span><span>Usability Testing</span><span>Interaction Design</span><span>Information Architecture</span><span>Design Systems</span><span>Accessibility</span><span>Wireframing &amp; Prototyping</span><span>Journey Mapping</span><span>Heuristic Evaluation</span>
+          <span aria-hidden="true">Human-Centric Design</span><span aria-hidden="true">Human Factors</span><span aria-hidden="true">UX Research</span><span aria-hidden="true">Usability Testing</span><span aria-hidden="true">Interaction Design</span><span aria-hidden="true">Information Architecture</span><span aria-hidden="true">Design Systems</span><span aria-hidden="true">Accessibility</span><span aria-hidden="true">Wireframing &amp; Prototyping</span><span aria-hidden="true">Journey Mapping</span><span aria-hidden="true">Heuristic Evaluation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INTRO STATEMENT ===================== -->
+    <section class="statement">
+      <p>I'm a designer who combines <em>human factors research</em> with technology and intuition to build experiences people actually love.</p>
+    </section>
+
+    <!-- ===================== TRIO ANIMATION (red + blue → purple) ===================== -->
+    <section class="trio2" aria-hidden="true">
+      <div class="trio2-stage">
+        <div class="trio2-line"></div>
+        <div class="t2-circle t2-left"><span class="t2-fill red"></span></div>
+        <div class="t2-circle t2-center">
+          <svg class="t2w purple" viewBox="0 0 122 122" preserveAspectRatio="none"><g><path d="M0 19 q7.6 -7.5 15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 L183 19 L183 122 L0 122 Z"/><animateTransform attributeName="transform" type="translate" from="0 0" to="-30.4 0" dur="3.2s" repeatCount="indefinite"/></g></svg>
+          <svg class="t2w blue" viewBox="0 0 122 122" preserveAspectRatio="none"><g><path d="M0 46 q7.6 -7.5 15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 L183 46 L183 122 L0 122 Z"/><animateTransform attributeName="transform" type="translate" from="0 0" to="-30.4 0" dur="3.6s" repeatCount="indefinite"/></g></svg>
+          <svg class="t2w red" viewBox="0 0 122 122" preserveAspectRatio="none"><g><path d="M0 73 q7.6 -7.5 15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 t15.2 0 L183 73 L183 122 L0 122 Z"/><animateTransform attributeName="transform" type="translate" from="0 0" to="-30.4 0" dur="2.7s" repeatCount="indefinite"/></g></svg>
+          <span class="t2-splash red"><i></i><i></i><i></i><i></i><i></i></span><span class="t2-splash blue"><i></i><i></i><i></i><i></i><i></i></span><span class="t2-splash purple"><i></i><i></i><i></i><i></i><i></i></span>
+        </div>
+        <div class="t2-circle t2-right"><span class="t2-fill blue"></span></div>
+        <span class="t2-dot red d1"></span>
+        <span class="t2-dot red d3"></span>
+        <span class="t2-dot blue d2"></span>
+        <span class="t2-dot blue d4"></span>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERTISE — STICKY WORD-NAV + DETAIL ===================== -->
+    <section class="capx" id="expertise" aria-label="What I do">
+      <div class="capx-track">
+        <div class="capx-sticky">
+          <div class="capx-grid">
+            <!-- LEFT: word list; the active word drops its sub-list right beneath it -->
+            <div class="capx-left">
+            <p class="capx-eyebrow">A few areas I bring together on every project.</p>
+            <ul class="capx-nav">
+              <li class="capx-w" data-i="0">
+                <div class="capx-wrow"><span class="dashed-dot"><span class="d-red"></span></span><span class="capx-word">Research</span></div>
+                <ul class="capx-sub">
+                  <li>User Research</li><li>Usability Testing</li><li>Interviews</li>
+                  <li>Surveys &amp; Diary Studies</li><li>Journey Mapping</li><li>Synthesis &amp; Insights</li>
+                </ul>
+              </li>
+              <li class="capx-w" data-i="1">
+                <div class="capx-wrow"><span class="dashed-dot"><span class="d-purple"></span></span><span class="capx-word">Design</span></div>
+                <ul class="capx-sub">
+                  <li>Wireframing</li><li>Prototyping</li><li>Interaction Design</li>
+                  <li>Design Systems</li><li>Visual &amp; UI Design</li><li>Developer Handoff</li>
+                </ul>
+              </li>
+              <li class="capx-w" data-i="2">
+                <div class="capx-wrow"><span class="dashed-dot"><span class="d-blue"></span></span><span class="capx-word">Human Factors</span></div>
+                <ul class="capx-sub">
+                  <li>Cognitive Load</li><li>Mental Models</li><li>Attention &amp; Perception</li>
+                  <li>Error Prevention</li><li>Ergonomics</li><li>Inclusive Design</li>
+                </ul>
+              </li>
+            </ul>
+            </div>
+
+            <!-- RIGHT: illustration that swaps with the active word -->
+            <div class="capx-arts">
+              <svg class="capx-img capx-svg" data-i="0" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Research">
+                <g class="ri-ring"><path opacity="0.8" d="M600 810C798.823 810 960 648.823 960 450C960 251.177 798.823 90 600 90C401.177 90 240 251.177 240 450C240 648.823 401.177 810 600 810Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 22"/></g>
+                <path class="dg-shadow" d="M600 545C657.99 545 705 497.99 705 440C705 382.01 657.99 335 600 335C542.01 335 495 382.01 495 440C495 497.99 542.01 545 600 545Z" transform="translate(9 12)" fill="#000000"/>
+                <path d="M600 545C657.99 545 705 497.99 705 440C705 382.01 657.99 335 600 335C542.01 335 495 382.01 495 440C495 497.99 542.01 545 600 545Z" fill="#ffffff" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M600 512C639.765 512 672 479.765 672 440C672 400.235 639.765 368 600 368C560.235 368 528 400.235 528 440C528 479.765 560.235 512 600 512Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M724.397 528.799C713.462 517.864 695.734 517.864 684.799 528.799C673.864 539.734 673.864 557.462 684.799 568.397L761.874 645.472C772.808 656.406 790.537 656.406 801.472 645.472C812.406 634.537 812.406 616.808 801.472 605.874L724.397 528.799Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M600 434C609.941 434 618 425.941 618 416C618 406.059 609.941 398 600 398C590.059 398 582 406.059 582 416C582 425.941 590.059 434 600 434Z" fill="#FF5A57" stroke="#111111" stroke-width="2"/>
+                <path d="M556 485.75C565 448.75 635 448.75 644 485.75H556Z" fill="#FF5A57" stroke="#111111" stroke-width="2"/>
+                <g class="ri-ic" style="--d:0s">
+                  <path d="M346 155H189C181.268 155 175 161.268 175 169V286C175 293.732 181.268 300 189 300H346C353.732 300 360 293.732 360 286V169C360 161.268 353.732 155 346 155Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M324 155V210L348 194L360 202V155" fill="#8B45F6"/><path d="M324 155V210L348 194L360 202V155" stroke="#111111" stroke-width="2"/>
+                  <path d="M205 205H245" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M205 245H320" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M205 270H300" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M202 304C207.523 304 212 299.523 212 294C212 288.477 207.523 284 202 284C196.477 284 192 288.477 192 294C192 299.523 196.477 304 202 304Z" fill="#FF5A57"/>
+                </g>
+                <g class="ri-ic" style="--d:.5s">
+                  <path d="M686 65H529C521.268 65 515 71.268 515 79V196C515 203.732 521.268 210 529 210H686C693.732 210 700 203.732 700 196V79C700 71.268 693.732 65 686 65Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M588 115C592 88 638 89 635 121C633 142 608 140 608 166" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M608 184V186" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M548 176C554.075 176 559 171.075 559 165C559 158.925 554.075 154 548 154C541.925 154 537 158.925 537 165C537 171.075 541.925 176 548 176Z" fill="#8B45F6"/>
+                </g>
+                <g class="ri-ic" style="--d:.9s">
+                  <path d="M1036 160H854C846.268 160 840 166.268 840 174V291C840 298.732 846.268 305 854 305H1036C1043.73 305 1050 298.732 1050 291V174C1050 166.268 1043.73 160 1036 160Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M875 223C884.941 223 893 214.941 893 205C893 195.059 884.941 187 875 187C865.059 187 857 195.059 857 205C857 214.941 865.059 223 875 223Z" fill="#FF5A57" stroke="#111111" stroke-width="2"/><path d="M875 270C884.941 270 893 261.941 893 252C893 242.059 884.941 234 875 234C865.059 234 857 242.059 857 252C857 261.941 865.059 270 875 270Z" fill="#8B45F6" stroke="#111111" stroke-width="2"/><path d="M875 318C884.941 318 893 309.941 893 300C893 290.059 884.941 282 875 282C865.059 282 857 290.059 857 300C857 309.941 865.059 318 875 318Z" fill="#1F63FF" stroke="#111111" stroke-width="2"/>
+                  <path d="M920 195H1010" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M920 220H970" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M920 250H1008" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M920 278H970" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M920 305H1000" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="ri-ic" style="--d:1.3s">
+                  <path d="M1071 385H849C841.268 385 835 391.268 835 399V541C835 548.732 841.268 555 849 555H1071C1078.73 555 1085 548.732 1085 541V399C1085 391.268 1078.73 385 1071 385Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M865 425H945" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M865 450H905" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="ri-bar b1" d="M913 500H875V538H913V500Z" fill="#FF5A57" stroke="#111111" stroke-width="2"/><path class="ri-bar b2" d="M978 470H940V538H978V470Z" fill="#8B45F6" stroke="#111111" stroke-width="2"/><path class="ri-bar b3" d="M1043 430H1005V538H1043V430Z" fill="#1F63FF" stroke="#111111" stroke-width="2"/>
+                </g>
+                <g class="ri-ic" style="--d:.7s">
+                  <path d="M391 400H159C151.268 400 145 406.268 145 414V536C145 543.732 151.268 550 159 550H391C398.732 550 405 543.732 405 536V414C405 406.268 398.732 400 391 400Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M220 525C247.614 525 270 502.614 270 475C270 447.386 247.614 425 220 425C192.386 425 170 447.386 170 475C170 502.614 192.386 525 220 525Z" stroke="#111111" stroke-width="2"/><g class="ri-pie"><path d="M220 425C228.751 425.053 237.335 427.401 244.895 431.811C252.454 436.221 258.723 442.538 263.076 450.13C267.429 457.722 269.712 466.324 269.699 475.075C269.686 483.826 267.376 492.421 263 500H220V425Z" fill="#FF5A57" stroke="#111111" stroke-width="2"/><path d="M263 500C258.904 507.137 253.111 513.152 246.133 517.513C239.156 521.874 231.21 524.446 223 525L220 500H263Z" fill="#8B45F6" stroke="#111111" stroke-width="2"/><animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 220 475" to="360 220 475" dur="5s" repeatCount="indefinite"/></g>
+                  <path d="M298 450C302.418 450 306 446.418 306 442C306 437.582 302.418 434 298 434C293.582 434 290 437.582 290 442C290 446.418 293.582 450 298 450Z" fill="#FF5A57"/><path d="M298 493C302.418 493 306 489.418 306 485C306 480.582 302.418 477 298 477C293.582 477 290 480.582 290 485C290 489.418 293.582 493 298 493Z" fill="#8B45F6"/><path d="M298 536C302.418 536 306 532.418 306 528C306 523.582 302.418 520 298 520C293.582 520 290 523.582 290 528C290 532.418 293.582 536 298 536Z" fill="#1F63FF"/>
+                  <path d="M322 442H370" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M322 485H370" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M322 528H370" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="ri-ic" style="--d:1.1s">
+                  <path d="M416 625H264C256.268 625 250 631.268 250 639V821C250 828.732 256.268 835 264 835H416C423.732 835 430 828.732 430 821V639C430 631.268 423.732 625 416 625Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M315 625C315 600 365 600 365 625H390V655H290V625H315Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M300 708C309.941 708 318 699.941 318 690C318 680.059 309.941 672 300 672C290.059 672 282 680.059 282 690C282 699.941 290.059 708 300 708Z" fill="#FF5A57" stroke="#111111" stroke-width="2"/><path class="ri-tick t1" d="M292 690L299 698L312 682" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M300 763C309.941 763 318 754.941 318 745C318 735.059 309.941 727 300 727C290.059 727 282 735.059 282 745C282 754.941 290.059 763 300 763Z" fill="#8B45F6" stroke="#111111" stroke-width="2"/><path class="ri-tick t2" d="M292 745L299 753L312 737" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M300 818C309.941 818 318 809.941 318 800C318 790.059 309.941 782 300 782C290.059 782 282 790.059 282 800C282 809.941 290.059 818 300 818Z" fill="#1F63FF" stroke="#111111" stroke-width="2"/><path class="ri-tick t3" d="M292 800L299 808L312 792" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M340 685H405" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 705H385" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 740H405" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 760H385" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 795H405" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 815H385" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="ri-ic" style="--d:1.5s">
+                  <path d="M640 745C640 725.67 624.33 710 605 710C585.67 710 570 725.67 570 745V790C570 809.33 585.67 825 605 825C624.33 825 640 809.33 640 790V745Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M605 784C609.971 784 614 779.971 614 775C614 770.029 609.971 766 605 766C600.029 766 596 770.029 596 775C596 779.971 600.029 784 605 784Z" fill="#8B45F6"/>
+                  <path d="M535 755V790C535 833 675 833 675 790V755" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M605 825V865" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M565 865H645" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M515 675H570" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M545 681C548.314 681 551 678.314 551 675C551 671.686 548.314 669 545 669C541.686 669 539 671.686 539 675C539 678.314 541.686 681 545 681Z" fill="#8B45F6"/>
+                </g>
+                <g class="ri-ic" style="--d:.3s">
+                  <path d="M910 609H1055C1075 609 1090 624 1090 644V699C1090 719 1075 734 1055 734H965L933 764V734H910C890 734 875 719 875 699V644C875 624 890 609 910 609Z" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M934.62 643L942.986 660.25L962 662.5L948.31 675.25L952.113 694L934.62 684.25L917.887 694L921.69 675.25L908 662.5L927.014 660.25L934.62 643Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M982.127 643L990.338 660.25L1009 662.5L995.563 675.25L999.296 694L982.127 684.25L965.704 694L969.437 675.25L956 662.5L974.662 660.25L982.127 643Z" fill="#8B45F6" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1029.62 643L1037.99 660.25L1057 662.5L1043.31 675.25L1047.11 694L1029.62 684.25L1012.89 694L1016.69 675.25L1003 662.5L1022.01 660.25L1029.62 643Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="ri-ic" style="--d:1.7s">
+                  <path d="M925 835C936.046 835 945 826.046 945 815C945 803.954 936.046 795 925 795C913.954 795 905 803.954 905 815C905 826.046 913.954 835 925 835Z" fill="white" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M885 875C900 835 950 835 965 875H885Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <path opacity="0.8" d="M360 235C445 235 480 250 520 325" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 22"/>
+                <path d="M610 210V315" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path opacity="0.8" d="M700 235C765 235 805 250 840 260" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 22"/>
+                <path d="M405 475C465 475 500 460 525 450" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M725 440C770 410 790 385 835 385" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path opacity="0.8" d="M340 550C340 585 340 610 340 625" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 22"/>
+                <path d="M600 545V710" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path opacity="0.8" d="M790 680C815 680 815 680 835 680" stroke="#111111" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 22"/>
+                <path d="M420 243C424.418 243 428 239.418 428 235C428 230.582 424.418 227 420 227C415.582 227 412 230.582 412 235C412 239.418 415.582 243 420 243Z" fill="#FF5A57"/>
+                <path d="M790 263C794.418 263 798 259.418 798 255C798 250.582 794.418 247 790 247C785.582 247 782 250.582 782 255C782 259.418 785.582 263 790 263Z" fill="#FF5A57"/>
+                <path d="M1050 563C1054.42 563 1058 559.418 1058 555C1058 550.582 1054.42 547 1050 547C1045.58 547 1042 550.582 1042 555C1042 559.418 1045.58 563 1050 563Z" fill="#FF5A57"/>
+                <path d="M615 336C619.418 336 623 332.418 623 328C623 323.582 619.418 320 615 320C610.582 320 607 323.582 607 328C607 332.418 610.582 336 615 336Z" fill="#8B45F6"/>
+                <path d="M522 330C524.761 330 527 327.761 527 325C527 322.239 524.761 320 522 320C519.239 320 517 322.239 517 325C517 327.761 519.239 330 522 330Z" fill="#111111"/>
+                <path d="M600 665C602.761 665 605 662.761 605 660C605 657.239 602.761 655 600 655C597.239 655 595 657.239 595 660C595 662.761 597.239 665 600 665Z" fill="#111111"/>
+              </svg>
+              <svg class="capx-img capx-svg" data-i="1" viewBox="60 45 1080 810" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Design">
+                <g class="dg-ring cw"><path opacity="0.9" d="M600 785C782.254 785 930 637.254 930 455C930 272.746 782.254 125 600 125C417.746 125 270 272.746 270 455C270 637.254 417.746 785 600 785Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 18"/></g>
+                <g class="dg-ring ccw"><path opacity="0.45" d="M600 605C682.843 605 750 537.843 750 455C750 372.157 682.843 305 600 305C517.157 305 450 372.157 450 455C450 537.843 517.157 605 600 605Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 14"/></g>
+                <g class="ri-ic" style="--d:0s">
+                  <path d="M465 175H720C730 175 735 180 735 190V205C735 215 730 220 720 220H465L420 197.5L465 175Z" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M420 197.5L465 175V220L420 197.5Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M440 187V208" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M680 208.5C686.075 208.5 691 203.575 691 197.5C691 191.425 686.075 186.5 680 186.5C673.925 186.5 669 191.425 669 197.5C669 203.575 673.925 208.5 680 208.5Z" fill="#FF5A5F"/>
+                </g>
+                <g class="ri-ic" style="--d:.4s">
+                  <path d="M244 300H204C195.163 300 188 307.163 188 316V594C188 602.837 195.163 610 204 610H244C252.837 610 260 602.837 260 594V316C260 307.163 252.837 300 244 300Z" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M222 335H245M222 383H245M222 431H245M222 479H245M222 527H245M222 575H245" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="ri-ic" style="--d:.8s">
+                  <path d="M1014 300H956C946.059 300 938 308.059 938 318V592C938 601.941 946.059 610 956 610H1014C1023.94 610 1032 601.941 1032 592V318C1032 308.059 1023.94 300 1014 300Z" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M970 335H1000" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M977 380H952V405H977V380Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1017 380H992V405H1017V380Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M977 430H952V455H977V430Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path class="dg-swatch" d="M1017 430H992V455H1017V430Z" stroke="#2F6BFF" stroke-width="2.4"/>
+                  <path d="M985 568C989.418 568 993 564.418 993 560C993 555.582 989.418 552 985 552C980.582 552 977 555.582 977 560C977 564.418 980.582 568 985 568Z" fill="#FF5A5F"/>
+                </g>
+                <g class="ri-ic" style="--d:1.2s">
+                  <path d="M269 690H191C182.163 690 175 697.163 175 706V784C175 792.837 182.163 800 191 800H269C277.837 800 285 792.837 285 784V706C285 697.163 277.837 690 269 690Z" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M199 721C205.075 721 210 716.075 210 710C210 703.925 205.075 699 199 699C192.925 699 188 703.925 188 710C188 716.075 192.925 721 199 721Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M229 721C235.075 721 240 716.075 240 710C240 703.925 235.075 699 229 699C222.925 699 218 703.925 218 710C218 716.075 222.925 721 229 721Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M259 721C265.075 721 270 716.075 270 710C270 703.925 265.075 699 259 699C252.925 699 248 703.925 248 710C248 716.075 252.925 721 259 721Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M199 756C205.075 756 210 751.075 210 745C210 738.925 205.075 734 199 734C192.925 734 188 738.925 188 745C188 751.075 192.925 756 199 756Z" fill="#FF5A5F"/><path d="M229 756C235.075 756 240 751.075 240 745C240 738.925 235.075 734 229 734C222.925 734 218 738.925 218 745C218 751.075 222.925 756 229 756Z" fill="white" stroke="#8B45F7" stroke-width="4"/><path d="M259 756C265.075 756 270 751.075 270 745C270 738.925 265.075 734 259 734C252.925 734 248 738.925 248 745C248 751.075 252.925 756 259 756Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M199 791C205.075 791 210 786.075 210 780C210 773.925 205.075 769 199 769C192.925 769 188 773.925 188 780C188 786.075 192.925 791 199 791Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M229 791C235.075 791 240 786.075 240 780C240 773.925 235.075 769 229 769C222.925 769 218 773.925 218 780C218 786.075 222.925 791 229 791Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M259 791C265.075 791 270 786.075 270 780C270 773.925 265.075 769 259 769C252.925 769 248 773.925 248 780C248 786.075 252.925 791 259 791Z" fill="#2F6BFF"/>
+                </g>
+                <g class="ri-ic" style="--d:.6s">
+                  <path d="M910 665H450C438.954 665 430 673.954 430 685V795C430 806.046 438.954 815 450 815H910C921.046 815 930 806.046 930 795V685C930 673.954 921.046 665 910 665Z" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M430 710H930" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M790 665V815" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="dg-draw d1" d="M500 760C540 710 575 800 615 745C650 695 690 800 725 745" stroke="url(#paint0_linear_37_3018)" stroke-width="4" stroke-linecap="round"/>
+                  <path class="dg-draw d2" d="M500 780C545 735 585 810 630 760C665 725 700 810 735 760" stroke="#2F6BFF" stroke-width="3" stroke-linecap="round"/>
+                  <path opacity="0.65" d="M560 725V790M640 725V790M715 725V790" stroke="#111111" stroke-width="2" stroke-dasharray="2 10"/>
+                  <path d="M565 769C569.971 769 574 764.971 574 760C574 755.029 569.971 751 565 751C560.029 751 556 755.029 556 760C556 764.971 560.029 769 565 769Z" fill="#FF5A5F"/><path d="M640 744C644.971 744 649 739.971 649 735C649 730.029 644.971 726 640 726C635.029 726 631 730.029 631 735C631 739.971 635.029 744 640 744Z" fill="#8B45F7"/>
+                  <path d="M500 799C504.971 799 509 794.971 509 790C509 785.029 504.971 781 500 781C495.029 781 491 785.029 491 790C491 794.971 495.029 799 500 799Z" fill="#FF5A5F"/><path d="M610 799C614.971 799 619 794.971 619 790C619 785.029 614.971 781 610 781C605.029 781 601 785.029 601 790C601 794.971 605.029 799 610 799Z" fill="#8B45F7"/><path d="M720 799C724.971 799 729 794.971 729 790C729 785.029 724.971 781 720 781C715.029 781 711 785.029 711 790C711 794.971 715.029 799 720 799Z" fill="#2F6BFF"/>
+                  <path d="M525 785H565M635 785H675M745 785H785" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M525 805H555M635 805H665M745 805H775" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <path d="M224 300V204.828C224 191.609 232.229 185 248.688 185H382" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M823 185H1040.25C1053.42 185 1060 193.333 1060 210V330" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M224 610V690" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M285 745H430" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M930 745H1035C1051.67 745 1060 736.667 1060 720V610" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M577 314C495 314 435 379 435 465C435 526 462 564 494 586V665H613V625H660C673.333 625 680 618 680 604V566H710C726 566 731 549 721 538L687 500C692 455 700 393 672 357C653 333 608 314 577 314Z" class="dg-shadow" transform="translate(9 12)" fill="#000000"/>
+                <path d="M577 314C495 314 435 379 435 465C435 526 462 564 494 586V665H613V625H660C673.333 625 680 618 680 604V566H710C726 566 731 549 721 538L687 500C692 455 700 393 672 357C653 333 608 314 577 314Z" fill="#ffffff" stroke="#111111" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <g class="dg-ring cw"><path opacity="0.75" d="M600 560C657.99 560 705 512.99 705 455C705 397.01 657.99 350 600 350C542.01 350 495 397.01 495 455C495 512.99 542.01 560 600 560Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 14"/></g>
+                <path d="M578 434C587.389 434 595 426.389 595 417C595 407.611 587.389 400 578 400C568.611 400 561 407.611 561 417C561 426.389 568.611 434 578 434Z" fill="#8B45F7" class="dg-node" style="--n:0s"/>
+                <path d="M525 380C531.627 380 537 374.627 537 368C537 361.373 531.627 356 525 356C518.373 356 513 361.373 513 368C513 374.627 518.373 380 525 380Z" fill="#FF5A5F" class="dg-node" style="--n:.25s"/>
+                <path d="M498 429C504.627 429 510 423.627 510 417C510 410.373 504.627 405 498 405C491.373 405 486 410.373 486 417C486 423.627 491.373 429 498 429Z" fill="#FF5A5F" class="dg-node" style="--n:.5s"/>
+                <path d="M526 479C532.627 479 538 473.627 538 467C538 460.373 532.627 455 526 455C519.373 455 514 460.373 514 467C514 473.627 519.373 479 526 479Z" fill="#FF5A5F" class="dg-node" style="--n:.75s"/>
+                <path d="M633 386C639.627 386 645 380.627 645 374C645 367.373 639.627 362 633 362C626.373 362 621 367.373 621 374C621 380.627 626.373 386 633 386Z" fill="#2F6BFF" class="dg-node" style="--n:.15s"/>
+                <path d="M658 444C664.627 444 670 438.627 670 432C670 425.373 664.627 420 658 420C651.373 420 646 425.373 646 432C646 438.627 651.373 444 658 444Z" fill="#2F6BFF" class="dg-node" style="--n:.45s"/>
+                <path d="M610 500C616.627 500 622 494.627 622 488C622 481.373 616.627 476 610 476C603.373 476 598 481.373 598 488C598 494.627 603.373 500 610 500Z" fill="#2F6BFF" class="dg-node" style="--n:.7s"/>
+                <path d="M578 354C584.627 354 590 348.627 590 342C590 335.373 584.627 330 578 330C571.373 330 566 335.373 566 342C566 348.627 571.373 354 578 354Z" fill="#FF5A5F" class="dg-node" style="--n:.95s"/>
+                <path d="M578 504C584.627 504 590 498.627 590 492C590 485.373 584.627 480 578 480C571.373 480 566 485.373 566 492C566 498.627 571.373 504 578 504Z" fill="#2F6BFF" class="dg-node" style="--n:.35s"/>
+                <path opacity="0.85" d="M578 417L525 368M578 417V342M578 417L633 374M578 417L658 432M578 417L610 488M578 417L526 467M578 417H498M633 374L578 342L525 368L498 417L526 467L578 492L610 488L658 432L633 374Z" stroke="#111111" stroke-width="2"/>
+                <path d="M600 673C604.418 673 608 669.418 608 665C608 660.582 604.418 657 600 657C595.582 657 592 660.582 592 665C592 669.418 595.582 673 600 673Z" fill="#FF5A5F"/>
+                <path d="M335 462C338.866 462 342 458.866 342 455C342 451.134 338.866 448 335 448C331.134 448 328 451.134 328 455C328 458.866 331.134 462 335 462Z" fill="#FF5A5F"/>
+                <path d="M865 377C868.866 377 872 373.866 872 370C872 366.134 868.866 363 865 363C861.134 363 858 366.134 858 370C858 373.866 861.134 377 865 377Z" fill="#FF5A5F"/>
+                <path d="M915 822C918.866 822 922 818.866 922 815C922 811.134 918.866 808 915 808C911.134 808 908 811.134 908 815C908 818.866 911.134 822 915 822Z" fill="#FF5A5F"/>
+                <defs><linearGradient id="paint0_linear_37_3018" x1="500" y1="731.077" x2="725" y2="731.077" gradientUnits="userSpaceOnUse"><stop stop-color="#FF5A5F"/><stop offset="0.5" stop-color="#8B45F7"/><stop offset="1" stop-color="#2F6BFF"/></linearGradient></defs>
+              </svg>
+              <svg class="capx-img capx-svg" data-i="2" viewBox="5 5 590 590" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Human Factors">
+                <g class="dg-ring cw"><circle cx="300" cy="300" r="210" stroke="#111111" stroke-width="1.6" stroke-dasharray="1 9" opacity="0.85"/></g>
+                <g opacity="0.8" stroke="#111111" stroke-width="1.6" stroke-dasharray="1 9">
+                  <path d="M300 205 V140"/><path d="M385 252 L439 220"/><path d="M385 348 L439 380"/><path d="M300 395 V460"/><path d="M215 348 L161 380"/><path d="M215 252 L161 220"/>
+                </g>
+                <circle cx="300" cy="172" r="5" fill="#FF5A5F"/><circle cx="412" cy="236" r="5" fill="#2F6BFF"/><circle cx="412" cy="364" r="5" fill="#2F6BFF"/><circle cx="300" cy="428" r="5" fill="#FF5A5F"/><circle cx="188" cy="364" r="5" fill="#8B45F7"/><circle cx="188" cy="236" r="5" fill="#8B45F7"/>
+                <g class="ri-ic" style="--d:0s">
+                  <circle cx="300" cy="90" r="48" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <g class="hf-eye"><path d="M277 90 Q300 74 323 90 Q300 106 277 90 Z" stroke="#111111" stroke-width="2"/><circle cx="300" cy="90" r="9" fill="#FF5A5F"/></g>
+                  <path d="M286 67 L283 59 M300 64 L300 55 M314 67 L317 59" stroke="#FF5A5F" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <g class="ri-ic" style="--d:.3s">
+                  <circle cx="118" cy="195" r="48" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <path d="M118 176 L141 188 L118 200 L95 188 Z" fill="#C9A8F5" stroke="#111111" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M95 198 L118 210 L141 198" stroke="#8B45F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M95 208 L118 220 L141 208" stroke="#8B45F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="ri-ic" style="--d:.7s">
+                  <circle cx="482" cy="195" r="48" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <path d="M496 172 C509 172 514 184 510 195 L516 203 L508 205 V216 H492 V199 C484 195 483 180 493 175" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M479 184 A12 12 0 0 0 479 206" stroke="#8B45F7" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M470 178 A20 20 0 0 0 470 212" stroke="#2F6BFF" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <g class="ri-ic" style="--d:1s">
+                  <circle cx="482" cy="405" r="48" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <circle cx="482" cy="386" r="7" fill="#2F6BFF"/>
+                  <path d="M482 393 V402 M464 402 H500 M464 402 V412 M482 402 V412 M500 402 V412" stroke="#111111" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="464" cy="420" r="6.5" fill="#fff" stroke="#111111" stroke-width="2"/><circle cx="482" cy="420" r="6.5" fill="#8B45F7"/><circle cx="500" cy="420" r="6.5" fill="#2F6BFF"/>
+                </g>
+                <g class="ri-ic" style="--d:1.3s">
+                  <circle cx="118" cy="405" r="48" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <circle cx="118" cy="416" r="8" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <path d="M118 408 V390" stroke="#111111" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M103 398 A20 20 0 0 1 133 398" stroke="#2F6BFF" stroke-width="2" stroke-linecap="round"/>
+                </g>
+                <g class="ri-ic" style="--d:.5s">
+                  <circle cx="300" cy="510" r="48" fill="#fff" stroke="#111111" stroke-width="2"/>
+                  <path d="M300 485 L320 493 V509 C320 521 311 529 300 534 C289 529 280 521 280 509 V493 Z" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path class="ri-tick" d="M291 509 L298 516 L312 501" stroke="#8B45F7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <g class="dg-ring ccw"><circle cx="300" cy="300" r="96" stroke="#111111" stroke-width="1.6" stroke-dasharray="1 9" opacity="0.8"/></g>
+                <g class="hf-shadow">
+                  <path d="M300 244 L250 270 M300 244 L350 268 M300 244 L300 300 M250 270 L245 322 M250 270 L300 300 M350 268 L300 300 M350 268 L355 318 M245 322 L300 300 M245 322 L272 352 M300 300 L355 318 M300 300 L272 352 M300 300 L332 350 M355 318 L332 350 M272 352 L332 350" stroke="#000000" stroke-width="1.6"/>
+                  <circle cx="300" cy="244" r="8" fill="#000"/><circle cx="250" cy="270" r="8.5" fill="#000"/><circle cx="350" cy="268" r="8.5" fill="#000"/><circle cx="245" cy="322" r="8.5" fill="#000"/><circle cx="300" cy="300" r="10" fill="#000"/><circle cx="355" cy="318" r="8.5" fill="#000"/><circle cx="272" cy="352" r="8.5" fill="#000"/><circle cx="332" cy="350" r="8.5" fill="#000"/>
+                </g>
+                <path d="M300 244 L250 270 M300 244 L350 268 M300 244 L300 300 M250 270 L245 322 M250 270 L300 300 M350 268 L300 300 M350 268 L355 318 M245 322 L300 300 M245 322 L272 352 M300 300 L355 318 M300 300 L272 352 M300 300 L332 350 M355 318 L332 350 M272 352 L332 350" stroke="#9A9AA8" stroke-width="1.6"/>
+                <circle class="dg-node" style="--n:0s" cx="300" cy="244" r="8" fill="#fff" stroke="#111111" stroke-width="2"/>
+                <circle class="dg-node" style="--n:.25s" cx="250" cy="270" r="8.5" fill="#FF5A5F"/>
+                <circle class="dg-node" style="--n:.5s" cx="350" cy="268" r="8.5" fill="#2F6BFF"/>
+                <circle class="dg-node" style="--n:.75s" cx="245" cy="322" r="8.5" fill="#FF5A5F"/>
+                <circle class="dg-node" style="--n:.15s" cx="300" cy="300" r="10" fill="#8B45F7"/>
+                <circle class="dg-node" style="--n:.4s" cx="355" cy="318" r="8.5" fill="#2F6BFF"/>
+                <circle class="dg-node" style="--n:.65s" cx="272" cy="352" r="8.5" fill="#8B45F7"/>
+                <circle class="dg-node" style="--n:.9s" cx="332" cy="350" r="8.5" fill="#2F6BFF"/>
+                <circle r="4.5" fill="#FF5A5F"><animateMotion dur="2.4s" repeatCount="indefinite" path="M300 244 L300 300 L332 350"/></circle>
+                <circle r="4.5" fill="#2F6BFF"><animateMotion dur="3s" repeatCount="indefinite" path="M250 270 L300 300 L355 318"/></circle>
+                <circle r="4.5" fill="#8B45F7"><animateMotion dur="2.7s" repeatCount="indefinite" path="M350 268 L300 300 L272 352"/></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WORK / PROJECT CARDS ===================== -->
+    <section class="work" id="work">
+      <div class="work-grid">
+        <article class="case-card card-red">
+          <span class="card-fill" aria-hidden="true"></span>
+          <a href="project1.html" class="card-link" aria-label="View Project One"></a>
+          <div class="card-top">
+            <h3>MatchDog</h3>
+            <p>Adoption website that matches dogs to your lifestyle</p>
+            <div class="card-tags"><span>Web</span><span>·</span><span>UX</span><span>·</span><span>IA</span></div>
+          </div>
+          <div class="card-shot"><img src="proj1-assets/matchdog-card.png" alt="MatchDog adoption website and app hero mockup" /></div>
+        </article>
+
+        <article class="case-card card-blue">
+          <span class="card-fill" aria-hidden="true"></span>
+          <a href="project2.html" class="card-link" aria-label="View Project Two"></a>
+          <div class="card-top">
+            <h3>RockX</h3>
+            <p>Mobile companion for an immersive rock museum</p>
+            <div class="card-tags"><span>Mobile</span><span>·</span><span>AR</span><span>·</span><span>UI</span></div>
+          </div>
+          <div class="card-shot"><img src="proj2-assets/rockx-card.png" alt="RockX museum app live AR concert screen" /></div>
+        </article>
+
+        <article class="case-card card-purple">
+          <span class="card-fill" aria-hidden="true"></span>
+          <a href="project3.html" class="card-link" aria-label="View Project Three"></a>
+          <div class="card-top">
+            <h3>Hearty Kitchen</h3>
+            <p>Driver app for a wellness meal-kit service</p>
+            <div class="card-tags"><span>Mobile</span><span>·</span><span>Service</span><span>·</span><span>Testing</span></div>
+          </div>
+          <div class="card-shot"><img src="proj3-assets/hearty-card.png" alt="Hearty Kitchen driver app AI reroute screen" /></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== MEET THE DESIGNER ===================== -->
+    <section class="about" id="about">
+      <div class="about-card">
+        <h2 class="about-heading">Meet<br />The<br />Designer</h2>
+        <div class="about-content">
+          <div class="about-dots"><span class="dot d-red"></span><span class="dot d-purple"></span><span class="dot d-blue"></span></div>
+          <h3>Mounika</h3>
+          <p class="about-role">UX/UI Designer</p>
+          <a href="https://www.linkedin.com/in/mounika-reddy-madduri-44a389281" target="_blank" rel="noopener" class="about-link" aria-label="LinkedIn">in</a>
+          <a href="about.html" class="about-more">About me
+            <span class="arr-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+        </div>
+        <div class="about-photo"><img src="me.png" alt="Mounika" /></div>
+      </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section class="testi" aria-label="Testimonials">
+      <div class="testi-viewport">
+        <div class="testi-row">
+          <figure class="testi-item"><img src="testimonials/Arvind.png" alt="Testimonial — Arvind" /></figure>
+          <figure class="testi-item"><img src="testimonials/Thirupathi%20Rao.png" alt="Testimonial — Thirupathi Rao" /></figure>
+          <figure class="testi-item"><img src="testimonials/Sai%20Nagendra%20Praveen.png" alt="Testimonial — Sai Nagendra Praveen" /></figure>
+          <figure class="testi-item"><img src="testimonials/Ganesh%20Golla.png" alt="Testimonial — Ganesh Golla" /></figure>
+          <figure class="testi-item"><img src="testimonials/Satyashanthi%20Teppala.png" alt="Testimonial — Satyashanthi Teppala" /></figure>
+          <figure class="testi-item"><img src="testimonials/Sai%20Sreshtaa%20Turaga.png" alt="Testimonial — Sai Sreshtaa Turaga" /></figure>
+          <figure class="testi-item"><img src="testimonials/Jyothi%20Puchakatla.png" alt="Testimonial — Jyothi Puchakatla" /></figure>
+          <figure class="testi-item"><img src="testimonials/Shaik%20Shanawaz%20Hussain.png" alt="Testimonial — Shaik Shanawaz Hussain" /></figure>
+          <figure class="testi-item" aria-hidden="true"><img src="testimonials/Arvind.png" alt="" /></figure>
+        </div>
+      </div>
+      <div class="testi-dots" aria-hidden="true">
+        <button class="active"></button><button></button><button></button><button></button><button></button><button></button><button></button><button></button>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="faq" id="faq">
+      <h2 class="faq-title">FAQ's <span class="dot d-red"></span><span class="dot d-purple"></span><span class="dot d-blue"></span></h2>
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>How do you approach solving complex UX problems?</summary>
+          <div class="faq-answer">I start with the people involved, not the interface. I map the full journey, find where confidence and clarity break down, and prioritise those moments by how often they happen and how much they hurt. From there I move in small, testable steps, prototyping and testing with real users so the evidence, not my assumptions, shapes the design.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What role does AI play in your design process?</summary>
+          <div class="faq-answer">AI is a thinking partner throughout. I use it to synthesise research faster, explore more directions early, and pressure test my own ideas. I also design with AI as a product feature, like the AI reroute and match flows in my recent work, always keeping a human in control of the final call.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What kinds of projects excite you most?</summary>
+          <div class="faq-answer">Ambiguous problems with real human stakes, where good design genuinely changes someone's day. I love work that spans a whole product, a real information architecture, multi step flows, and a consistent system, rather than a single polished screen.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How do you balance user needs with business goals?</summary>
+          <div class="faq-answer">I treat them as the same problem, not opposing ones. When you solve the user's real friction, trust, retention, and conversion tend to follow. I frame decisions around outcomes both sides care about and use research and usability data to make the trade offs explicit instead of guessed.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What's your design philosophy?</summary>
+          <div class="faq-answer">Design should make hard things feel calm, clear, and trustworthy. I combine human factors research with craft and intuition to build experiences people actually love, and I measure success by outcomes, because sometimes the best result is talking someone out of the wrong choice.</div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER / CTA ===================== -->
+  <footer class="footer" id="contact">
+    <div class="footer-cta">
+      <span class="cta-fill" aria-hidden="true"><span class="cta-bloom b-red"></span><span class="cta-bloom b-purple"></span><span class="cta-bloom b-blue"></span></span>
+      <h2>Let's create a measurable<br />impact together.</h2>
+      <a href="mailto:mounika.iicd@gmail.com" class="btn-pill btn-light">Get in Touch</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <span class="logo-mark logo-mark-light"></span>
+        <div>
+          <strong>Mounika</strong>
+          <p>2026. UX Portfolio</p>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Explore</h4>
+          <a href="#work">Work</a><a href="#about">About</a><a href="resume.html">Resume</a><a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:mounika.iicd@gmail.com">Email me</a><a href="https://www.linkedin.com/in/mounika-reddy-madduri-44a389281" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="face-data.js"></script>
+  <script src="hands-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

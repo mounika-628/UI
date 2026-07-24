@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Mounika — UX/UI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <style>
+    .ap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+    /* hero */
+    .ap-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: start; margin-top: 60px; }
+    .ap-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+    .ap-eyebrow .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .ap-hero h1 { font-size: clamp(40px, 6vw, 76px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+    .ap-hero h1 .grad { background: linear-gradient(110deg, var(--red), var(--purple), var(--blue)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .ap-lead { margin-top: 22px; font-size: 18px; line-height: 1.7; color: var(--muted); max-width: 540px; }
+    .ap-story-title { font-size: clamp(32px, 4.6vw, 50px); font-weight: 700; letter-spacing: -0.02em; }
+    .ap-intro { margin-top: 24px; max-width: 560px; }
+    .ap-intro p { font-size: 17px; line-height: 1.8; color: var(--muted); }
+    .ap-intro p + p { margin-top: 18px; }
+    .ap-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .ap-photo { border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 5; background: #e9e9ef; box-shadow: 0 30px 60px rgba(0, 0, 0, .12); }
+    .ap-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; display: block; }
+
+    /* section shell */
+    .ap-sec { margin-top: 110px; }
+    .ap-sec > h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 700; letter-spacing: -0.02em; }
+    .ap-sec > p.ap-sub { margin-top: 12px; color: var(--muted); max-width: 620px; line-height: 1.7; }
+
+    /* story */
+    .ap-story { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 30px; }
+    .ap-story p { color: var(--muted); line-height: 1.8; }
+
+    /* what I do cards */
+    .ap-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
+    .ap-card { border: 1px solid var(--line); border-radius: 22px; padding: 30px; background: var(--bg); transition: transform .25s ease, box-shadow .25s ease; }
+    .ap-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(0, 0, 0, .08); }
+    .ap-card .ap-chip { width: 13px; height: 13px; border-radius: 50%; margin-bottom: 18px; }
+    .ap-card h3 { font-size: 19px; font-weight: 700; }
+    .ap-card p { margin-top: 10px; color: var(--muted); line-height: 1.65; font-size: 15px; }
+
+    /* skills */
+    .ap-skills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .ap-skills span { padding: 10px 20px; border: 1px solid var(--line); border-radius: 999px; font-weight: 500; font-size: 15px; }
+
+    /* timeline */
+    .ap-timeline { margin-top: 34px; border-left: 2px solid var(--line); padding-left: 30px; display: grid; gap: 30px; }
+    .ap-item { position: relative; }
+    .ap-item::before { content: ""; position: absolute; left: -38px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: var(--purple); box-shadow: 0 0 0 5px var(--bg); }
+    .ap-item .ap-when { font-size: 13px; font-weight: 600; color: var(--blue); letter-spacing: .02em; }
+    .ap-item h3 { font-size: 18px; font-weight: 700; margin-top: 4px; }
+    .ap-item .ap-where { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .ap-item p { color: var(--muted); line-height: 1.7; margin-top: 8px; font-size: 15px; max-width: 640px; }
+    .ap-points { margin-top: 12px; padding-left: 20px; max-width: 680px; }
+    .ap-points li { color: var(--muted); line-height: 1.7; font-size: 15px; margin-top: 9px; padding-left: 4px; }
+    .ap-points li::marker { color: var(--blue); }
+
+    /* cta */
+    .ap-cta { margin: 120px auto 0; text-align: center; border-radius: 30px; padding: 70px 24px; background: linear-gradient(118deg, var(--red), var(--purple), var(--blue)); color: #fff; }
+    .ap-cta h2 { font-size: clamp(28px, 5vw, 48px); font-weight: 800; letter-spacing: -0.02em; }
+    .ap-cta p { margin-top: 14px; opacity: .9; }
+    .ap-cta .btn-pill { margin-top: 28px; background: #fff; color: #14141a; }
+
+    /* gallery (masonry, beside the story) */
+    .ap-gallery { columns: 2; column-gap: 14px; }
+    .ap-gallery img { width: 100%; margin: 0 0 14px; border-radius: 14px; display: block; cursor: zoom-in; break-inside: avoid; box-shadow: 0 10px 30px rgba(0, 0, 0, .07); transition: transform .3s ease, box-shadow .3s ease; }
+    .ap-gallery img:hover { transform: translateY(-4px) scale(1.012); box-shadow: 0 22px 46px rgba(0, 0, 0, .16); }
+
+    /* lightbox */
+    .lb { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 30px; background: rgba(12, 12, 18, .88); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); cursor: zoom-out; }
+    .lb.open { display: flex; }
+    .lb img { max-width: 92vw; max-height: 90vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0, 0, 0, .55); }
+    .lb-close { position: absolute; top: 22px; right: 26px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .12); color: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
+    .lb-close:hover { background: rgba(255, 255, 255, .24); }
+
+    @media (max-width: 860px) {
+      .ap-hero { grid-template-columns: 1fr; gap: 34px; }
+      .ap-photo { max-width: 360px; }
+      .ap-story, .ap-cards { grid-template-columns: 1fr; }
+      .ap-gallery { columns: 2; }
+    }
+    @media (max-width: 520px) { .ap-gallery { columns: 1; } }
+  </style>
+</head>
+
+<body id="top">
+  <canvas class="bg-dots" aria-hidden="true"></canvas>
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="nav-wrap">
+    <nav class="nav">
+      <a href="index.html#top" class="nav-logo">
+        <span class="logo-mark"></span>
+        <span class="nav-brand"><strong>Mounika</strong></span>
+      </a>
+      <div class="nav-end">
+        <ul class="nav-links">
+          <li><a href="index.html#work">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="resume.html">Resume</a></li>
+        </ul>
+        <div class="nav-right">
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <svg class="sun" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="4" /><g stroke-width="1.6"><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.5" y1="4.5" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.5" y2="19.5"/><line x1="4.5" y1="19.5" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.5" y2="4.5"/></g></svg>
+            <svg class="moon" viewBox="0 0 24 24" width="18" height="18"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" /></svg>
+          </button>
+          <a href="mailto:mounika.iicd@gmail.com" class="btn-pill btn-dark btn-swap"><span class="swap"><span>Contact</span><span aria-hidden="true">Contact</span></span></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="ap">
+    <!-- ===================== MY STORY ===================== -->
+    <section class="ap-hero">
+      <div>
+        <h2 class="ap-story-title">My story</h2>
+        <div class="ap-intro">
+          <p>I grew up in a family of artists, which meant visual thinking wasn't something I learned later. It was just the language at home. By the time I was three, I was already drawing.</p>
+          <p>A lot of those early years were spent at my grandfather's NGO, Young Envoys International, where he taught art and painting to underprivileged children. He'd set up his easel; I'd sit beside him with whatever paper I could find, and we'd draw together for hours. He was a retired art teacher who'd spent his life giving art away to kids who otherwise wouldn't have had access to it, and watching him work taught me something I didn't have words for at the time. Mainly: that the act of looking carefully at the world is its own kind of generosity. I still think about that.</p>
+          <p>So when it came time to choose a degree, design felt less like a decision and more like a continuation. I went to the Indian Institute of Crafts and Design (IICD) in Jaipur, expecting to keep doing what I'd always done: make things, by hand, with care.</p>
+          <p>I didn't know what UI/UX was. Honestly, I'd barely heard the term. IICD taught a broad design education (craft, materials, communication, visual systems), and I assumed I'd end up somewhere in that world.</p>
+          <p>Then, on one project, I was put in charge of documentation and presentation. It was supposed to be the boring part. It wasn't. Organizing the team's research into a story someone else could follow, designing the structure of the deck so the logic came through as clearly as the images: that was the first time I noticed I was paying attention differently. The visual still mattered to me, but suddenly the interaction did too: how someone moves through information, what they need to see first, what gets in their way.</p>
+          <p>That project rewired something. I started seeking out interaction design wherever I could find it, and by the time I graduated, I knew I wasn't going back to pure craft. I wanted to design how people meet the things we build.</p>
+          <p>A year and a half of industry work followed: first as a Product Designer at PixelWave, then a UI/UX Designer at Johnson &amp; Johnson working on their Identity Governance application. J&amp;J was where I learned what enterprise UX actually feels like: systems that are deeply complex, users who don't have a choice about using them, and the responsibility that comes with both.</p>
+          <p>Which brings me to San Jose State University, where I'm now finishing a Master's in Human Factors &amp; Ergonomics. The Master's is letting me go deeper on the parts of UX I was always pulled toward but never had vocabulary for: cognition, decision-making, the messy interaction between humans and the increasingly autonomous systems they share their lives with.</p>
+          <p>My focus now is Human-AI interaction. Which is, when I look back at it, just the most recent version of the same question I've been asking since I was sitting next to my grandfather: how do we help people see clearly?</p>
+        </div>
+      </div>
+      <div class="ap-gallery">
+        <img src="me.png" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/1.JPG" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/2.jpg" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/6.JPG" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/3.jpg" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/4.jpg" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/7.JPG" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/5.jpeg" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/8.JPG" alt="" loading="lazy" />
+        <img src="About%20me%20Gallery/9.JPG" alt="" loading="lazy" />
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="ap-sec">
+      <h2>Skills &amp; tools</h2>
+      <p class="ap-sub">The toolkit I reach for day to day.</p>
+      <div class="ap-skills">
+        <span>Figma</span><span>Prototyping</span><span>User Research</span><span>Usability Testing</span>
+        <span>Wireframing</span><span>Design Systems</span><span>Interaction Design</span><span>Information Architecture</span>
+        <span>Accessibility</span><span>Adobe XD</span><span>Design Thinking</span>
+      </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section class="ap-sec">
+      <h2>Experience</h2>
+      <p class="ap-sub">A quick snapshot.</p>
+      <div class="ap-timeline">
+        <div class="ap-item">
+          <div class="ap-when">April 2024 — July 2025</div>
+          <h3>Junior UI/UX Designer</h3>
+          <div class="ap-where">AAPMOR Technologies</div>
+          <ul class="ap-points">
+            <li>Led the end-to-end design of an Identity Governance Application, improving security workflows and reducing user friction through intuitive, user-centered interfaces.</li>
+            <li>Conducted user research, task analysis, and usability evaluations to uncover pain points and inform data-driven design decisions that enhanced overall system usability.</li>
+            <li>Designed wireframes, high-fidelity prototypes, and design system components, ensuring consistent visual language and scalable UI patterns across the application.</li>
+            <li>Collaborated closely with developers, product managers, and stakeholders to translate complex technical requirements into clear interaction flows and accessible design solutions.</li>
+          </ul>
+        </div>
+        <div class="ap-item">
+          <div class="ap-when">Nov 2023 — Apr 2024</div>
+          <h3>Product Designer</h3>
+          <div class="ap-where">PixelWave Technologies</div>
+          <ul class="ap-points">
+            <li>Designed the company's brand identity and website, ensuring a cohesive and visually appealing user experience.</li>
+            <li>Conducted usability tests and implemented design improvements to enhance website functionality and user engagement.</li>
+            <li>Created responsive landing pages and user-centered digital experiences using Figma and Adobe XD for wireframing and prototyping.</li>
+            <li>Applied UX design principles gained through hands-on project work to improve real-world design outcomes.</li>
+            <li>Collaborated with cross-functional teams to deliver effective, visually compelling digital solutions and strengthen the company's online presence.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== EDUCATION ===================== -->
+    <section class="ap-sec">
+      <h2>Education</h2>
+      <div class="ap-timeline">
+        <div class="ap-item">
+          <div class="ap-when">Aug 2025 — May 2027</div>
+          <h3>Master's in Human Factors &amp; Ergonomics</h3>
+          <div class="ap-where">San Jose State University</div>
+          <p>Current GPA: 3.7</p>
+        </div>
+        <div class="ap-item">
+          <div class="ap-when">June 2018 — July 2023</div>
+          <h3>Integrated Master's in Product Design</h3>
+          <div class="ap-where">Indian Institute of Crafts and Design</div>
+          <p>GPA: 4.0 / 4.0</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="ap-cta">
+      <h2>Let's create something together.</h2>
+      <p>Open to new projects, collaborations, and conversations.</p>
+      <a href="mailto:mounika.iicd@gmail.com" class="btn-pill">Get in touch</a>
+    </section>
+  </main>
+
+  <!-- lightbox -->
+  <div class="lb" aria-hidden="true"><button class="lb-close" aria-label="Close">&times;</button><img src="" alt="" /></div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <span class="logo-mark logo-mark-light"></span>
+        <div>
+          <strong>Mounika</strong>
+          <p>&copy; 2026. All rights reserved.</p>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Explore</h4>
+          <a href="index.html#work">Work</a><a href="about.html">About</a><a href="resume.html">Resume</a><a href="index.html#faq">FAQ</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:mounika.iicd@gmail.com">Email me</a><a href="https://www.linkedin.com/in/mounika-reddy-madduri-44a389281" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const themeBtn = document.querySelector(".theme-toggle");
+    if (themeBtn) themeBtn.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      try { localStorage.setItem("theme", isDark ? "dark" : "light"); } catch (e) {}
+    });
+
+    /* ===================== GALLERY LIGHTBOX ===================== */
+    (function lightbox() {
+      const lb = document.querySelector(".lb");
+      if (!lb) return;
+      const lbImg = lb.querySelector("img");
+      const imgs = [...document.querySelectorAll(".ap-gallery img")];
+      function open(src) { lbImg.src = src; lb.classList.add("open"); }
+      function close() { lb.classList.remove("open"); lbImg.src = ""; }
+      imgs.forEach(im => im.addEventListener("click", () => open(im.currentSrc || im.src)));
+      lb.addEventListener("click", (e) => { if (e.target !== lbImg) close(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    })();
+
+    /* ===================== BACKGROUND DOT TEXTURE (cursor-reactive) ===================== */
+    (function bgDots() {
+      const canvas = document.querySelector(".bg-dots");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      const DPR = Math.min(2, window.devicePixelRatio || 1);
+      const GAP = 26, RAD = 110, RAD2 = RAD * RAD, STR = 2.2, SPRING = 0.06, DAMP = 0.85;
+      let W = 0, H = 0, dots = [], mx = -1e4, my = -1e4, mouseIn = false;
+      const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+      function gcol(x) {
+        let t = Math.max(0, Math.min(1, x / (W || 1)));
+        if (t < 0.5) { t *= 2; return `rgb(${lerp(241,142,t)},${lerp(92,51,t)},${lerp(77,224,t)})`; }
+        t = (t - 0.5) * 2; return `rgb(${lerp(142,75,t)},${lerp(51,79,t)},${lerp(224,230,t)})`;
+      }
+      function build() {
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.style.width = W + "px"; canvas.style.height = H + "px";
+        canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+        dots = [];
+        for (let gy = 0; gy < H + GAP; gy += GAP) for (let gx = 0; gx < W + GAP; gx += GAP) {
+          const x = gx + (Math.random() - 0.5) * GAP * 1.25, y = gy + (Math.random() - 0.5) * GAP * 1.25;
+          dots.push({ hx: x, hy: y, ox: 0, oy: 0, vx: 0, vy: 0, size: 0.6 + Math.random() * 1.8, a: 0.22 + Math.random() * 0.42, col: gcol(x) });
+        }
+      }
+      function frame() {
+        ctx.clearRect(0, 0, W, H);
+        for (const d of dots) {
+          if (mouseIn) {
+            const ddx = (d.hx + d.ox) - mx, ddy = (d.hy + d.oy) - my, dd = ddx * ddx + ddy * ddy;
+            if (dd < RAD2) { const dist = Math.sqrt(dd) || 1, f = (1 - dist / RAD) * STR; d.vx += (ddx / dist) * f; d.vy += (ddy / dist) * f; }
+          }
+          d.vx = (d.vx - d.ox * SPRING) * DAMP; d.vy = (d.vy - d.oy * SPRING) * DAMP;
+          d.ox += d.vx; d.oy += d.vy;
+          ctx.globalAlpha = d.a; ctx.fillStyle = d.col;
+          ctx.fillRect(d.hx + d.ox - d.size / 2, d.hy + d.oy - d.size / 2, d.size, d.size);
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(frame);
+      }
+      build();
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        for (const d of dots) { ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx - d.size / 2, d.hy - d.size / 2, d.size, d.size); }
+        ctx.globalAlpha = 1;
+      } else {
+        window.addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; mouseIn = true; });
+        document.addEventListener("pointerleave", () => { mouseIn = false; });
+        requestAnimationFrame(frame);
+      }
+      let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+    })();
+  </script>
+</body>
+
+</html>

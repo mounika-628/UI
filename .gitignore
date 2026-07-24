@@ -1,0 +1,17 @@
+# OS / editor cruft
+.DS_Store
+**/.DS_Store
+.claude/
+
+# Large source files NOT used by the live site
+*.mov
+*.mp4
+
+# Unused source folders (not referenced by the HTML/CSS/JS)
+/Projects/
+/About Me Gallery/
+/Inspiration screen/
+/Testimonials/
+
+# Unlinked resume PDF (resume.html is the live resume page)
+Mounika_Reddy_Madduri (resume).pdf

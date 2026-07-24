@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hearty Kitchen · Driver App · Mounika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="project.css" />
+  <style>
+    :root { --ind: #4f5d39; --ind-soft: #eef1e6; --pc-lav: #f4f2ea; }
+
+    /* ===== Hearty Kitchen animated hero stage ===== */
+    .hk-stage { position: relative; height: 585px; align-self: center; }
+    /* concentric green rings behind the phone, fading into the hero cream */
+    .hk-blob { position: absolute; top: 50%; left: 52%; width: 500px; height: 500px; transform: translate(-50%, -50%);
+      border-radius: 50%; z-index: 1;
+      background: radial-gradient(circle,
+        #a7c583 0 16%,
+        #b9d29d 16% 31%,
+        #cbdfb4 31% 46%,
+        #d9e8c8 46% 61%,
+        #e6efd9 61% 76%,
+        #f0f3e8 76% 90%,
+        transparent 90%);
+      animation: hk-blob 9s ease-in-out infinite; }
+    @keyframes hk-blob {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50%      { transform: translate(-50%, -50%) scale(1.035); }
+    }
+
+    /* real phone render: comes in like a comet from the top-right and slams down */
+    .hk-phone { position: absolute; top: 50%; left: 52%; z-index: 3;
+      animation: hk-phone-in 3.2s cubic-bezier(.5, .04, .32, 1) both; }
+    .hk-phone-img { display: block; width: 345px; height: auto;
+      filter: drop-shadow(0 30px 42px rgba(30, 30, 15, .34));
+      animation: hk-float 7s ease-in-out 3.2s infinite; }
+    @keyframes hk-phone-in {
+      0%, 44%  { opacity: 0; transform: translate(-50%, -50%) translate(520px, -560px) scale(.32) rotate(38deg); }
+      48%      { opacity: 1; }
+      63%      { transform: translate(-50%, -50%) translate(0, -14px) scale(1.1) rotate(-5deg); }  /* comet strike */
+      71%      { transform: translate(-50%, -50%) translate(0, 6px) scale(.96) rotate(2.5deg); }   /* rebound */
+      100%     { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    }
+
+    /* cards: shuffle at centre, then EXPLODE outward on impact and float around the phone */
+    .hk-card { position: absolute; top: 50%; left: 52%; z-index: 5;
+      animation: hk-intro 3.2s cubic-bezier(.34, .8, .3, 1) both; animation-delay: var(--d, 0s); }
+    .hk-card-in { background: #fff; border-radius: 14px; box-shadow: 0 16px 34px rgba(40, 45, 25, .18);
+      padding: 11px 14px; display: flex; align-items: center; gap: 10px; white-space: nowrap;
+      animation: hk-float 4.5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+    .hk-card small { display: block; font-size: 11px; color: #8a8f7e; }
+    .hk-card b { display: block; font-size: 16px; font-weight: 800; color: #23281c; letter-spacing: -.02em; }
+    .hk-green { color: #3a9d4a !important; }
+    .hk-stars { color: #f5b301; font-size: 13px; letter-spacing: 2px; }
+    .hk-review small { color: #55503f; font-style: italic; margin-top: 2px; }
+    .hk-cic { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-weight: 800; font-size: 15px; flex: none; }
+    .hk-cic-g { background: #eef1e6; color: #4f5d39; }
+    .hk-cic-green { background: #e6f4e6; color: #3a9d4a; }
+    .hk-cic-y { background: #fdf3d6; color: #e0a12a; }
+    @keyframes hk-intro {
+      0%   { opacity: 0; transform: translate(-50%, -50%) scale(.5) rotate(0deg); }
+      6%   { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(-6deg); }
+      14%  { transform: translate(-50%, -50%) translate(28px, -7px) rotate(7deg); }
+      22%  { transform: translate(-50%, -50%) rotate(-5deg); }
+      30%  { transform: translate(-50%, -50%) translate(24px, -6px) rotate(6deg); }
+      38%  { transform: translate(-50%, -50%) rotate(-2deg); }
+      60%  { transform: translate(-50%, -50%) scale(1) rotate(0deg); }          /* stacked, waiting for the strike */
+      70%  { transform: translate(-50%, -50%) translate(calc(var(--fx) * 1.28), calc(var(--fy) * 1.28)) scale(1.16) rotate(var(--fr)); }  /* blast out */
+      100% { transform: translate(-50%, -50%) translate(var(--fx), var(--fy)) scale(1) rotate(var(--fr)); }                                /* settle */
+    }
+    @keyframes hk-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    /* delivery route path that draws itself (left to right) once the phone lands */
+    .hk-route { position: absolute; top: 38%; left: 50%; width: 620px; max-width: 128%;
+      transform: translate(-50%, -50%); z-index: 2; pointer-events: none;
+      clip-path: inset(0 100% 0 0);
+      animation: hk-route-draw 1.8s cubic-bezier(.5, 0, .2, 1) both; animation-delay: 1.95s; }
+    @keyframes hk-route-draw {
+      0%   { clip-path: inset(0 100% 0 0); }
+      100% { clip-path: inset(0 -6% 0 0); }
+    }
+    .hk-route-b { top: 66%; left: 47%; width: 460px; transform: translate(-50%, -50%) scaleX(-1) rotate(4deg);
+      opacity: .5; animation-delay: 2.45s; }
+    .hk-route-c { top: 30%; left: 38%; width: 320px; transform: translate(-50%, -50%) rotate(-11deg);
+      opacity: .42; animation-delay: 2.75s; }
+    /* shockwave ring on impact */
+    .hk-shock { position: absolute; top: 50%; left: 52%; width: 60px; height: 60px; border-radius: 50%;
+      border: 3px solid rgba(79, 93, 57, .55); transform: translate(-50%, -50%) scale(0); opacity: 0; z-index: 2;
+      animation: hk-shock 3.2s ease-out both; }
+    @keyframes hk-shock {
+      0%, 60% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+      64%     { opacity: .8; transform: translate(-50%, -50%) scale(.5); }
+      82%     { opacity: 0; transform: translate(-50%, -50%) scale(4); }
+      100%    { opacity: 0; }
+    }
+
+    @media (max-width: 900px) { .hk-stage { display: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      .hk-phone, .hk-phone-img, .hk-card, .hk-card-in, .hk-blob, .hk-route, .hk-shock { animation: none; }
+      .hk-shock { display: none; }
+      .hk-phone { transform: translate(-50%, -50%); }
+      .hk-card { transform: translate(-50%, -50%) translate(var(--fx), var(--fy)) rotate(var(--fr)); }
+      .hk-route { clip-path: none; }
+    }
+  </style>
+  <style>
+    /* ===== North Star Vision callout ===== */
+    .hk-northstar { margin: 24px 0 0; padding: 26px 32px; border-left: 4px solid #4F5D39;
+      background: #f4f2ea; border-radius: 0 16px 16px 0; max-width: 860px; }
+    .hk-northstar > p { font-size: clamp(20px, 2.8vw, 26px); line-height: 1.45; color: #3b472a;
+      font-weight: 500; margin: 0; letter-spacing: -.01em; }
+    .dark .hk-northstar { background: rgba(79, 93, 57, .30); }
+    .dark .hk-northstar > p { color: var(--ink); }
+    .hk-tagline { margin: 22px 0 0; display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      font-size: clamp(18px, 2.4vw, 23px); font-weight: 600; color: #4F5D39; letter-spacing: -.01em; }
+    .hk-tagline span { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700;
+      color: #7d8470; background: #eef1e6; padding: 5px 11px; border-radius: 999px; }
+
+    /* ===== Designing: ecosystem then blueprint, stacked & centered ===== */
+    .hk-design-row { display: flex; flex-direction: column; align-items: flex-start; gap: 52px; margin-top: 44px; }
+    .hk-design-row figure { margin: 0; width: 100%; }
+    .hk-design-row img { display: block; background: none; border-radius: 10px; margin: 0; width: 100%; }
+    .pc-fig img { border-radius: 10px; }
+    .hk-eco-fig img { max-width: 600px; }
+    .hk-bp-fig img { max-width: 100%; }
+    .hk-hw-fig img { max-width: 820px; }
+    .hk-fig-h { font-size: clamp(19px, 2.2vw, 24px); font-weight: 700; letter-spacing: -.02em; color: #23232b; margin: 0 0 18px; }
+    .dark .hk-fig-h { color: var(--ink); }
+    /* dark mode: image captions/descriptions on the dark page -> readable light */
+    .dark .pc-fig figcaption,
+    .dark .hk-design-row figcaption,
+    .dark .hk-screens figcaption,
+    .dark .hk-ai-row figcaption { color: #d7d9d0; }
+    /* delivery flow: no card background, phones a touch larger */
+    .hk-flow-fig img { background: none; border-radius: 0; width: 112%; max-width: 112%; margin-left: -6%; }
+    @media (max-width: 760px) { .hk-flow-fig img { width: 100%; max-width: 100%; margin-left: 0; } }
+    /* AI reroute: two portrait phone screens, same size as the delivery-flow phones */
+    .hk-ai-row { display: flex; flex-wrap: wrap; gap: 44px; margin-top: 44px; }
+    .hk-ai-row figure { margin: 0; width: 220px; max-width: 100%; }
+    .hk-ai-row img { width: 100%; display: block; border-radius: 10px; }
+    .hk-ai-row figcaption { margin-top: 16px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .hk-design-row figcaption { margin: 16px 0 0; color: var(--muted); font-size: 15px; line-height: 1.5; text-align: left; max-width: 760px; }
+
+    /* ===== Key-screens gallery (portrait driver screens) ===== */
+    .hk-screens { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 24px; max-width: 900px; align-items: start; }
+    .hk-screens figure { margin: 0; }
+    .hk-screens img { width: 100%; display: block; background: none; border: none; border-radius: 10px;
+      transition: transform .3s ease; }
+    .hk-screens img:hover { transform: translateY(-4px); }
+    .hk-screens figcaption { margin-top: 14px; text-align: center; font-size: 14px; color: var(--muted); }
+    @media (max-width: 760px) { .hk-screens { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ===== Hearty Kitchen design-system component library (green, matches the driver app) ===== */
+    .ds-comp { background: #faf9f3; border: 1px solid #e7e6da; border-radius: 20px;
+      padding: 36px; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px 44px; }
+    .ds-cgroup { min-width: 0; }
+    .ds-clabel { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #4F5D39; font-weight: 700; margin-bottom: 16px; }
+    .ds-crow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .ds-cnote { margin-top: 16px; font-size: 13px; line-height: 1.55; color: #6b6f60; }
+    @media (max-width: 760px) { .ds-comp { grid-template-columns: 1fr; } }
+    /* buttons */
+    .hkb { font-family: "Poppins", sans-serif; font-size: 14px; font-weight: 600; padding: 11px 20px; border-radius: 12px; border: none; cursor: pointer; }
+    .hkb-primary { background: #4F5D39; color: #fff; }
+    .hkb-secondary { background: #fff; color: #4F5D39; border: 1px solid rgba(79, 93, 57, .45); }
+    .hkb-disabled { background: #eceadf; color: #adaa99; cursor: not-allowed; }
+    /* status pills */
+    .hkpill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px; border-radius: 999px; font-size: 12.5px; font-weight: 700; }
+    .hkpill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .hkpill-online { background: #e6f4e6; color: #3f9d4a; }
+    .hkpill-transit { background: #fdece1; color: #e8743b; }
+    .hkpill-done { background: #eef1e6; color: #4F5D39; }
+    /* delivery card */
+    .hkdcard { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid #e7e6da; border-radius: 14px; padding: 12px 14px; width: 100%; box-shadow: 0 8px 20px rgba(40, 45, 25, .06); }
+    .hkdcard-ic { width: 44px; height: 44px; border-radius: 12px; background: #eef1e6; color: #4F5D39; display: grid; place-items: center; flex: none; font-size: 18px; }
+    .hkdcard > div { flex: 1; min-width: 0; }
+    .hkdcard b { display: block; color: #23281c; font-size: 14.5px; }
+    .hkdcard small { color: #6b6f60; font-size: 12.5px; }
+    .hkdcard-pay { color: #3f9d4a; font-weight: 800; font-size: 15px; }
+    /* earnings stat */
+    .hkstat { background: #4F5D39; color: #fff; border-radius: 14px; padding: 14px 18px; width: 100%; }
+    .hkstat small { display: block; font-size: 12px; color: #cdd4be; }
+    .hkstat b { display: block; font-size: 24px; font-weight: 800; letter-spacing: -.02em; }
+    /* toggle */
+    .hkrow { display: flex; align-items: center; justify-content: space-between; color: #3f4536; font-size: 14px; width: 100%; }
+    .hktoggle { width: 46px; height: 26px; border-radius: 999px; background: #cfd3c2; position: relative; flex: none; }
+    .hktoggle.on { background: #3f9d4a; }
+    .hktoggle i { position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: .2s; }
+    .hktoggle.on i { left: 23px; }
+    /* progress */
+    .hkprog-label { font-size: 12.5px; color: #6b6f60; margin-bottom: 8px; font-weight: 600; }
+    .hkprog { height: 8px; border-radius: 999px; background: #eceadf; overflow: hidden; width: 100%; }
+    .hkprog i { display: block; height: 100%; background: linear-gradient(90deg, #4F5D39, #7d9152); border-radius: 999px; }
+    /* radio & checkbox */
+    .hkopt { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #3f4536; padding: 4px 0; }
+    .hkradio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #c4c8b6; flex: none; position: relative; }
+    .hkradio.on { border-color: #4F5D39; }
+    .hkradio.on::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #4F5D39; }
+    .hkcheck { width: 20px; height: 20px; border-radius: 6px; border: 2px solid #c4c8b6; flex: none; display: grid; place-items: center; color: #fff; font-size: 12px; }
+    .hkcheck.on { background: #4F5D39; border-color: #4F5D39; }
+    /* dropdown */
+    .hkselect { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #e2e1d3; border-radius: 12px; padding: 12px 14px; color: #3f4536; font-size: 14px; width: 100%; }
+    .hkselect svg { width: 16px; height: 16px; stroke: #8a8f7e; fill: none; stroke-width: 2.4; }
+    /* stepper — delivery progress */
+    .hkstep { display: flex; list-style: none; margin: 0; padding: 0; width: 100%; }
+    .hkstep li { flex: 1; display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e7e6da; border-radius: 14px; padding: 12px 14px; font-size: 13px; color: #6b6f60; position: relative; }
+    .hkstep li:not(:last-child) { margin-right: 34px; }
+    .hkstep li:not(:last-child)::after { content: ""; position: absolute; right: -34px; top: 50%; width: 34px; border-top: 2px dashed #d4d8c6; }
+    .hkstep li em { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #4F5D39; color: #fff; font-weight: 700; font-size: 13px; font-style: normal; flex: none; }
+    .hkstep li b { display: block; color: #23281c; font-size: 13.5px; font-weight: 700; }
+    .hkstep li small { display: block; font-size: 11.5px; color: #9a9488; margin-top: 1px; }
+    .hkstep li.active { background: #eef1e6; border-color: #cdd6bc; }
+  </style>
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+</head>
+
+<body id="top">
+  <canvas class="bg-dots" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="pc-nav">
+    <div class="pc-nav-inner">
+      <a href="index.html#work" class="pc-back">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="11 6 5 12 11 18" /></svg>
+        Back to Home
+      </a>
+      <nav class="pc-crumb"><a href="index.html#top">Home</a> <span>•</span> <a href="index.html#work">Work</a> <span>•</span> <b>Hearty Kitchen · Driver App</b></nav>
+      <a href="#more" class="btn-pill btn-dark btn-swap"><span class="swap"><span>contact</span><span aria-hidden="true">contact</span></span></a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="pc-hero-wrap">
+    <div class="pc pc-hero">
+      <div>
+        <span class="pc-eyebrow2">Service Provider App</span>
+        <h1 class="pc-title">Hearty Kitchen</h1>
+        <p class="pc-lead">Hearty Kitchen is a Bay Area meal-kit service built around wellness and home cooking. I designed its driver-facing app, the mobile experience independent drivers use to pick up, route, deliver, and get paid. The goal: make a high-pressure job feel calm, clear, and trustworthy.</p>
+        <div class="pc-chips">Mobile UI&nbsp;&nbsp; Service Design&nbsp;&nbsp; Usability Testing <span class="pc-dotsep"><i></i><i></i></span></div>
+        <dl class="pc-meta">
+          <div><dt>My Role</dt><dd>Driver App · Mobile</dd></div>
+          <div><dt>Team</dt><dd>4 (I owned the driver app)</dd></div>
+          <div><dt>Result</dt><dd>SUS 72.5 (vs 68)</dd></div>
+        </dl>
+      </div>
+      <div class="hk-stage" data-hk aria-hidden="true">
+        <span class="hk-blob"></span>
+        <span class="hk-shock"></span>
+        <img class="hk-route" src="proj3-assets/hero-route.png" alt="" aria-hidden="true" />
+        <img class="hk-route hk-route-b" src="proj3-assets/hero-route.png" alt="" aria-hidden="true" />
+        <img class="hk-route hk-route-c" src="proj3-assets/hero-route.png" alt="" aria-hidden="true" />
+
+        <div class="hk-phone">
+          <img class="hk-phone-img" src="proj3-assets/hero-phone.png" alt="Hearty Kitchen driver app on a phone" />
+        </div>
+
+        <div class="hk-card hk-earn" style="--fx:-210px; --fy:-146px; --fr:-7deg; --d:0s">
+          <div class="hk-card-in">
+            <span class="hk-cic hk-cic-g">$</span>
+            <div><small>Earnings Today</small><b>$72.50</b></div>
+          </div>
+        </div>
+        <div class="hk-card hk-rating" style="--fx:183px; --fy:-168px; --fr:7deg; --d:.06s">
+          <div class="hk-card-in">
+            <span class="hk-cic hk-cic-y">★</span>
+            <div><small>Driver Rating</small><b>4.9</b></div>
+          </div>
+        </div>
+        <div class="hk-card hk-deliv" style="--fx:229px; --fy:17px; --fr:5deg; --d:.12s">
+          <div class="hk-card-in">
+            <span class="hk-cic hk-cic-green">&#10003;</span>
+            <div><small>Delivery Completed</small><b class="hk-green">+$8.00</b></div>
+          </div>
+        </div>
+        <div class="hk-card hk-tip" style="--fx:183px; --fy:183px; --fr:-6deg; --d:.18s">
+          <div class="hk-card-in">
+            <span class="hk-cic hk-cic-green">&#9829;</span>
+            <div><small>Tip Received</small><b class="hk-green">+$5.00</b></div>
+          </div>
+        </div>
+        <div class="hk-card hk-review" style="--fx:-193px; --fy:144px; --fr:5deg; --d:.24s">
+          <div class="hk-card-in">
+            <div class="hk-stars">★★★★★</div>
+            <small>"Good service!"</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="pc">
+    <!-- ===================== CONTEXT ===================== -->
+    <section class="pc-sec" style="border-top:none">
+      <h2 class="pc-h2">The product.</h2>
+      <p class="pc-sub" style="max-width:760px;font-size:20px">Hearty Kitchen is a Bay Area meal-kit service built around wellness and home cooking. A reliable delivery network is what makes the promise real, so the driver app had to be as considered as the consumer one.</p>
+    </section>
+
+    <!-- ===================== NORTH STAR VISION ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">North Star Vision.</h2>
+      <blockquote class="hk-northstar">
+        <p>Hearty Kitchen brings nourishing, intentional meals back to Bay Area communities, making wellness through cooking accessible and sustainable.</p>
+        <p class="hk-tagline"><span>Tagline</span> Where Flavor Meets Wellbeing</p>
+      </blockquote>
+    </section>
+
+    <!-- ===================== MY ROLE ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">My role.</h2>
+      <p class="pc-sub">This was a four-person graduate team project. We split the platform; here's exactly what was mine.</p>
+      <div class="pc-role">
+        <div class="pc-rolebox">
+          <h4>The team project</h4>
+          <p>Hearty Kitchen, designed end-to-end across a consumer app, a service-provider (driver) app, and a web admin portal. Research and brand were shared; each surface had an owner.</p>
+        </div>
+        <div class="pc-rolebox mine">
+          <h4>What I owned</h4>
+          <p>The driver / service-provider app: the driver persona synthesis, the full delivery flow, the visual system for the driver portal, and the usability test and iterations on it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== WHO / FEATURES ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Who it's for.</h2>
+      <p class="pc-sub">Independent drivers who deliver Hearty Kitchen meal kits from hub to customer, often juggling multiple stops under time pressure. Four capabilities shaped every screen.</p>
+      <div class="pc-goals">
+        <div class="pc-goal">Real-time delivery management</div>
+        <div class="pc-goal">Multi-stop route optimization</div>
+        <div class="pc-goal">Earnings transparency</div>
+        <div class="pc-goal">In-app exception handling</div>
+      </div>
+    </section>
+
+    <!-- ===================== USER JOURNEY MAP ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">User journey map.</h2>
+      <p class="pc-sub">Before touching a single screen, I mapped a driver's full shift, from going online to cashing out, charting their actions, touchpoints, and emotional highs and lows across each delivery. The stress points, unclear routing, no way to report a problem, and opaque pay, became the opportunities that shaped the app.</p>
+      <figure class="pc-fig">
+        <img src="proj3-assets/journey-map.png?v=3" alt="Hearty Kitchen driver journey map across five delivery stages with goals, actions, thoughts, emotions, pain points, opportunities, and touchpoints" />
+        <figcaption>The driver's shift mapped end to end. The emotional curve pinpoints where confidence dips, and those dips are exactly where the design needed to step in.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== DESIGNING THE DRIVER APP ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Designing the driver app.</h2>
+      <p class="pc-sub">With the journey mapped, I worked out how the driver app fits into Hearty Kitchen's wider service, how each moment should be delivered, and how the hardest edge cases should flow, then shaped it all into screens.</p>
+      <div class="hk-design-row">
+        <figure class="hk-bp-fig">
+          <img src="proj3-assets/service-blueprint.png?v=2" alt="Hearty Kitchen service blueprint across five stages: discover, choose and personalize, receive and unbox, cook and pause, and reflect, mapping customer actions against frontstage, backstage, and supporting systems" />
+          <figcaption>Service Blueprint: the end-to-end service across five stages, mapping the customer's actions against the frontstage, backstage, and supporting systems that deliver each one.</figcaption>
+        </figure>
+        <figure class="hk-bp-fig">
+          <h3 class="hk-fig-h">Service hardware touchpoints.</h3>
+          <img src="proj3-assets/hardware-touchpoints.png" alt="Hearty Kitchen service hardware touchpoints: the physical devices and objects drivers, customers, and staff interact with across the service" />
+          <figcaption>Service Hardware Touchpoints: the physical devices and objects, from the driver's phone to the packaging at the doorstep, that people interact with across the service.</figcaption>
+        </figure>
+        <figure class="hk-bp-fig">
+          <h3 class="hk-fig-h">Hearty Kitchen roadmap.</h3>
+          <img src="proj3-assets/roadmap.png" alt="Hearty Kitchen product roadmap laying out phases of work and features over time" />
+          <figcaption>Product Roadmap: how the driver app rolls out over time, phasing the work from core delivery flows through to the features that follow.</figcaption>
+        </figure>
+        <figure class="hk-bp-fig">
+          <h3 class="hk-fig-h">Budget and scaling strategy.</h3>
+          <img src="proj3-assets/budget-plan.png" alt="Hearty Kitchen budget plan breaking down the cost and resource allocation for the project" />
+          <figcaption>Budget Plan: the cost and resource allocation behind the build, mapping spend against each stage of the roadmap.</figcaption>
+        </figure>
+        <figure class="hk-bp-fig">
+          <h3 class="hk-fig-h">Service provider app.</h3>
+          <img src="proj3-assets/service-provider-app.png" alt="Hearty Kitchen service provider app screens supporting the staff side of the service" />
+          <figcaption>Service Provider App: the staff-facing side of the service that works alongside the driver app to keep each order moving.</figcaption>
+        </figure>
+        <figure class="hk-bp-fig">
+          <h3 class="hk-fig-h">Role of the delivery app in the service ecosystem.</h3>
+          <img src="proj3-assets/delivery-app-role.png" alt="Diagram showing the role of the Hearty Kitchen delivery app within the wider service ecosystem" />
+          <figcaption>Role of the Delivery App: where the driver app sits in the wider ecosystem and how it connects customers, staff, and the wider service.</figcaption>
+        </figure>
+        <figure class="hk-bp-fig">
+          <h3 class="hk-fig-h">Key pain points from the driver perspective.</h3>
+          <img src="proj3-assets/driver-painpoints.png" alt="Summary of key pain points drivers experience across a Hearty Kitchen shift" />
+          <figcaption>Key Pain Points: the friction drivers hit across a shift, unclear routing, no way to report a problem, and opaque pay, that the design set out to fix.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== DELIVERY FLOW ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">The delivery flow.</h2>
+      <p class="pc-sub">Drivers are guided through each step, navigation, real-time tracking, arrival, and final confirmation, with clear actions, delivery verification, and instant updates to earnings and progress.</p>
+      <figure class="pc-fig hk-flow-fig">
+        <img src="proj3-assets/flow-nobg.png" alt="Active delivery and completion flow: navigation, in transit, arrived, confirm delivery, order complete" />
+        <figcaption>Navigation → In Transit → Arrived → Confirm Delivery (photo proof) → Order Complete, with earnings updating live.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== AI REROUTE ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">AI reroute.</h2>
+      <p class="pc-sub">When traffic builds on the current route, the app uses real-time conditions to find a faster path and surfaces it to the driver, comparing the AI-recommended route against the original with clear time savings and ETA, so drivers stay on time without second-guessing.</p>
+      <div class="hk-ai-row">
+        <figure>
+          <img src="proj3-assets/ai-reroute-1.png" alt="AI Reroute screen: a map comparing the AI-recommended 24-minute route against the original 32-minute route, with route options and an AI insight explaining the time saved" />
+          <figcaption>AI finds a faster route, saving 8 minutes by avoiding heavy traffic, and shows why, with the best ETA to deliver on time.</figcaption>
+        </figure>
+        <figure>
+          <img src="proj3-assets/ai-reroute-2.png" alt="AI Reroute screen showing the recommended route in progress with live traffic and an on-time estimated arrival" />
+          <figcaption>One tap takes the AI-recommended route; the driver stays on time with live traffic guiding each turn.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===================== DRIVER PROFILE ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Explore the driver's profile.</h2>
+      <p class="pc-sub">Beyond the delivery flow, drivers manage their whole work life in one place, their profile and vehicle details, earnings history, notification preferences, and payout methods, all in the same calm, legible system.</p>
+      <div class="hk-screens">
+        <figure>
+          <img src="proj3-assets/screen-profile-nobg.png" alt="Driver profile screen with rating, vehicle information, and this week's delivery and earnings summary" />
+          <figcaption>Profile: rating, vehicle details, and a weekly snapshot of deliveries, earnings, and on-time rate.</figcaption>
+        </figure>
+        <figure>
+          <img src="proj3-assets/screen-earnings-nobg.png" alt="Earnings history screen breaking down net pay, gross earnings, fees, taxes, tips, and per-delivery averages" />
+          <figcaption>Earnings: honest net pay, with gross, fees, taxes, and tips broken out day by day.</figcaption>
+        </figure>
+        <figure>
+          <img src="proj3-assets/screen-notifications-nobg.png" alt="Notifications settings screen with toggles for delivery alerts, earnings reports, and promotions" />
+          <figcaption>Notifications: granular control over delivery alerts, earnings reports, and channels.</figcaption>
+        </figure>
+        <figure>
+          <img src="proj3-assets/screen-payment-nobg.png" alt="Payment methods screen showing the active bank payout, other methods, and the weekly payout schedule" />
+          <figcaption>Payments: manage payout methods and see exactly when earnings land each week.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== USABILITY TEST ===================== -->
+  <section class="pc-hero-wrap">
+    <div class="pc" style="padding:96px 0">
+      <h2 class="pc-h2">Testing it with drivers.</h2>
+      <p class="pc-sub">Three participants ran 8 core tasks: going online, viewing the optimized route, accepting an order, confirming pickup, contacting the customer, reporting a problem, completing with photo proof, and checking earnings.</p>
+      <div class="pc-statbig">
+        <div><div class="n" style="color:#e8743b">72.5</div><div class="l">average SUS score, above the 68 industry benchmark</div></div>
+        <div><div class="n">67%</div><div class="l">success on "report a problem", the clear bottleneck</div></div>
+        <div><div class="n">2 / 8</div><div class="l">tasks (route view &amp; problem report) drove most misclicks</div></div>
+      </div>
+      <table class="pc-table">
+        <thead><tr><th>Task</th><th>Success</th><th>Time</th><th>Misclicks</th></tr></thead>
+        <tbody>
+          <tr><td>1 · Find today's deliveries</td><td>100%</td><td>19s</td><td>1</td></tr>
+          <tr><td>2 · View optimized route</td><td>100%</td><td>1m 4s</td><td>6</td></tr>
+          <tr><td>3 · Review &amp; accept order</td><td>100%</td><td>35s</td><td>1</td></tr>
+          <tr><td>4 · Confirm pickup</td><td>100%</td><td>16s</td><td>0</td></tr>
+          <tr><td>5 · Contact customer</td><td>100%</td><td>8s</td><td>0</td></tr>
+          <tr class="bad"><td>6 · Report a problem</td><td>67%</td><td>1m 47s</td><td>6</td></tr>
+          <tr><td>7 · Complete with photo proof</td><td>100%</td><td>31s</td><td>1</td></tr>
+          <tr><td>8 · Check earnings breakdown</td><td>100%</td><td>23s</td><td>1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <main class="pc">
+    <!-- ===================== ITERATIONS ===================== -->
+    <section class="pc-sec" style="border-top:none">
+      <h2 class="pc-h2">What I changed.</h2>
+      <p class="pc-sub">The test pointed at three fixes, each tied to a number, each shipped into the design.</p>
+
+      <div class="pc-iter">
+        <img src="proj3-assets/iter-report-nobg.png" alt="Before and after: problem reporting" />
+        <div class="pc-iter-txt">
+          <span class="ba">Before → After</span>
+          <h3>Made problem-reporting reachable</h3>
+          <p>The active-delivery screen had no clear way to report a problem, so a "customer not home" scenario tripped up two of three drivers, one failed it outright. I added a dedicated <b>Report Issue</b> button on the In-Transit screen and a structured report flow, giving drivers fast escalation in stressful moments.</p>
+        </div>
+      </div>
+
+      <div class="pc-iter">
+        <img src="proj3-assets/iter-route-nobg.png" alt="Before and after: route view discoverability" />
+        <div class="pc-iter-txt">
+          <span class="ba">Before → After</span>
+          <h3>Surfaced the optimized route</h3>
+          <p>The multi-stop route was the product's smartest feature, but drivers overlooked it, one took over a minute to find it. I gave it a solid high-contrast button and a bolder label, making the multi-stop route immediately recognizable from the deliveries list.</p>
+        </div>
+      </div>
+
+      <div class="pc-iter">
+        <img src="proj3-assets/iter-earnings-nobg.png" alt="Before and after: earnings transparency" />
+        <div class="pc-iter-txt">
+          <span class="ba">Before → After</span>
+          <h3>Made earnings honest</h3>
+          <p>The original only showed gross pay, drivers told us competitor apps "surprise you at tax time." I added a full breakdown (gross, service fee, taxes, tips, net pay) plus next-payout details, so drivers can make an informed call before accepting a delivery. Participants named transparency their top trust factor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAKEAWAYS ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Takeaways.</h2>
+      <p class="pc-sub" style="max-width:760px;font-size:18px">Designing for drivers meant designing for stress: one-handed, time-boxed, high-stakes. The biggest wins weren't new features, they were making the right action <em>findable</em> at the right moment, and being honest about money. Testing turned three vague hunches into three specific, defensible changes.</p>
+    </section>
+
+    <!-- ===================== DESIGN SYSTEM ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Design system.</h2>
+      <p class="pc-sub">The driver app pairs Playfair Display for headings with Inter for body text, over a calm, food-inspired palette: one warm olive anchor, fresh greens for live status, and honest accents for money and alerts. A single type scale and a small component set keep every screen consistent.</p>
+
+      <h3 class="pc-h3">Typography.</h3>
+      <div class="ds-type">
+        <div class="ds-row">
+          <div class="ds-spec"><b>Display</b>Playfair Display Black · 64 / 72</div>
+          <div class="ds-sample" style="font-family:'Playfair Display',serif; font-weight:900; font-size:clamp(40px,6vw,64px); letter-spacing:-.01em; color:#4F5D39">Hearty Kitchen</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 1</b>Playfair Display Bold · 44 / 52</div>
+          <div class="ds-sample" style="font-family:'Playfair Display',serif; font-weight:700; font-size:clamp(32px,4.6vw,44px); letter-spacing:-.01em">Deliver with confidence</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 2</b>Playfair Display SemiBold · 32 / 40</div>
+          <div class="ds-sample" style="font-family:'Playfair Display',serif; font-weight:600; font-size:clamp(24px,3.4vw,32px)">Your route, optimized</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 3</b>Playfair Display SemiBold · 22 / 30</div>
+          <div class="ds-sample" style="font-family:'Playfair Display',serif; font-weight:600; font-size:22px">Report an issue</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Body</b>Inter Regular · 16 / 26</div>
+          <div class="ds-sample" style="font-family:'Inter',sans-serif; font-weight:400; font-size:16px; line-height:1.6; color:#4a4a55">Every delivery is one clear action at a time: pick up, navigate, confirm, and watch your earnings update the moment the drop is done.</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Small / Caption</b>Inter Regular · 13 / 20</div>
+          <div class="ds-sample" style="font-family:'Inter',sans-serif; font-weight:400; font-size:13px; line-height:1.5; color:#6b6f60">Net pay shown after service fee, taxes, and tips, so there are no surprises at payout.</div>
+        </div>
+      </div>
+
+      <h3 class="pc-h3">Colours.</h3>
+      <div class="ds-colors">
+        <div class="ds-swatch"><span style="background:#4F5D39"></span><b>Olive (Primary)</b><i>#4F5D39</i></div>
+        <div class="ds-swatch"><span style="background:#3B472A"></span><b>Deep Olive</b><i>#3B472A</i></div>
+        <div class="ds-swatch"><span style="background:#3F9D4A"></span><b>Fresh Green (Status)</b><i>#3F9D4A</i></div>
+        <div class="ds-swatch"><span style="background:#E8743B"></span><b>Orange (Accent)</b><i>#E8743B</i></div>
+        <div class="ds-swatch"><span style="background:#F5B301"></span><b>Gold (Rating)</b><i>#F5B301</i></div>
+        <div class="ds-swatch"><span style="background:#EEF1E6; border:1px solid #dfe2d4"></span><b>Sage Tint</b><i>#EEF1E6</i></div>
+        <div class="ds-swatch"><span style="background:#F4F2EA; border:1px solid #e6e3d7"></span><b>Cream</b><i>#F4F2EA</i></div>
+        <div class="ds-swatch"><span style="background:#23281C"></span><b>Ink</b><i>#23281C</i></div>
+        <div class="ds-swatch"><span style="background:#6B6F60"></span><b>Slate</b><i>#6B6F60</i></div>
+      </div>
+
+      <h3 class="pc-h3">Components.</h3>
+      <p class="pc-sub">A shared library of the pieces that repeat across the app, each with a rule for when to use it, so every screen is assembled the same way.</p>
+      <div class="ds-comp">
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Buttons</span>
+          <div class="ds-crow">
+            <button type="button" class="hkb hkb-primary">Go online</button>
+            <button type="button" class="hkb hkb-secondary">View route</button>
+            <button type="button" class="hkb hkb-disabled" disabled>Offline</button>
+          </div>
+          <p class="ds-cnote">One olive primary per screen for the main action; a secondary beside it; disabled greys out and loses the fill.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Status pills</span>
+          <div class="ds-crow">
+            <span class="hkpill hkpill-online">Online</span>
+            <span class="hkpill hkpill-transit">In Transit</span>
+            <span class="hkpill hkpill-done">Delivered</span>
+          </div>
+          <p class="ds-cnote">Live delivery state at a glance: green for online, orange while in transit, olive once a stop is complete.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Delivery card</span>
+          <div class="hkdcard">
+            <span class="hkdcard-ic">📍</span>
+            <div><b>Stop 2 · 1420 Fillmore St</b><small>ETA 11 min · 3.2 mi</small></div>
+            <span class="hkdcard-pay">$14.50</span>
+          </div>
+          <p class="ds-cnote">The workhorse card for the deliveries list: stop, address, ETA and distance, and the pay for that drop.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Earnings stat</span>
+          <div class="hkstat"><small>Net earnings this week</small><b>$673.50</b></div>
+          <p class="ds-cnote">The headline money figure, always shown as net pay so drivers see what actually lands.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Toggles</span>
+          <div class="ds-crow" style="flex-direction:column; align-items:stretch; gap:12px; width:100%">
+            <div class="hkrow"><span>New order alerts</span><span class="hktoggle on"><i></i></span></div>
+            <div class="hkrow"><span>Weekly reports</span><span class="hktoggle"><i></i></span></div>
+          </div>
+          <p class="ds-cnote">Fill green when on. Used across notification settings so drivers control what pings them mid-shift.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Progress</span>
+          <div style="width:100%"><div class="hkprog-label">Stop 2 of 5 · 40%</div><div class="hkprog"><i style="width:40%"></i></div></div>
+          <p class="ds-cnote">Shows how far through the multi-stop route the driver is, so a long shift feels finishable.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== MORE WORK ===================== -->
+  <section class="pc-next-wrap" id="more">
+    <div class="pc pc-next">
+      <div>
+        <span class="pc-eyebrow">More work</span>
+        <h2>See the rest of the portfolio</h2>
+        <p>Two more projects: a B2C web platform and a mobile experience app.</p>
+      </div>
+      <a href="index.html#work" class="btn-pill">View all →</a>
+    </div>
+  </section>
+  <div class="pc pc-foot">
+    <span>&copy; 2026 Mounika Reddy Madduri</span>
+    <a href="index.html#work"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="11 6 5 12 11 18" /></svg> Back to Portfolio</a>
+  </div>
+
+  <script>
+    const themeBtn = document.querySelector(".theme-toggle");
+    if (themeBtn) themeBtn.addEventListener("click", () => { const d = document.documentElement.classList.toggle("dark"); try { localStorage.setItem("theme", d ? "dark" : "light"); } catch (e) {} });
+    (function bgDots() {
+      const canvas = document.querySelector(".bg-dots"); if (!canvas) return;
+      const ctx = canvas.getContext("2d"), DPR = Math.min(2, window.devicePixelRatio || 1);
+      const GAP = 26, RAD = 110, RAD2 = RAD * RAD, STR = 2.2, SPRING = 0.06, DAMP = 0.85;
+      let W = 0, H = 0, dots = [], mx = -1e4, my = -1e4, mouseIn = false;
+      const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+      function gcol(x) { let t = Math.max(0, Math.min(1, x / (W || 1))); if (t < 0.5) { t *= 2; return `rgb(${lerp(241,142,t)},${lerp(92,51,t)},${lerp(77,224,t)})`; } t = (t - 0.5) * 2; return `rgb(${lerp(142,75,t)},${lerp(51,79,t)},${lerp(224,230,t)})`; }
+      function build() { W = window.innerWidth; H = window.innerHeight; canvas.style.width = W + "px"; canvas.style.height = H + "px"; canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); dots = []; for (let gy = 0; gy < H + GAP; gy += GAP) for (let gx = 0; gx < W + GAP; gx += GAP) { const x = gx + (Math.random() - 0.5) * GAP * 1.25, y = gy + (Math.random() - 0.5) * GAP * 1.25; dots.push({ hx: x, hy: y, ox: 0, oy: 0, vx: 0, vy: 0, size: 0.6 + Math.random() * 1.8, a: 0.22 + Math.random() * 0.42, col: gcol(x) }); } }
+      function frame() { ctx.clearRect(0, 0, W, H); for (const d of dots) { if (mouseIn) { const ddx = (d.hx + d.ox) - mx, ddy = (d.hy + d.oy) - my, dd = ddx * ddx + ddy * ddy; if (dd < RAD2) { const dist = Math.sqrt(dd) || 1, f = (1 - dist / RAD) * STR; d.vx += (ddx / dist) * f; d.vy += (ddy / dist) * f; } } d.vx = (d.vx - d.ox * SPRING) * DAMP; d.vy = (d.vy - d.oy * SPRING) * DAMP; d.ox += d.vx; d.oy += d.vy; ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx + d.ox - d.size / 2, d.hy + d.oy - d.size / 2, d.size, d.size); } ctx.globalAlpha = 1; requestAnimationFrame(frame); }
+      build();
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { for (const d of dots) { ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx - d.size / 2, d.hy - d.size / 2, d.size, d.size); } ctx.globalAlpha = 1; }
+      else { window.addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; mouseIn = true; }); document.addEventListener("pointerleave", () => { mouseIn = false; }); requestAnimationFrame(frame); }
+      let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+    })();
+  </script>
+</body>
+
+</html>

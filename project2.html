@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RockX · Museum App · Mounika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="project.css?v=23" />
+  <style>
+    :root { --ind: #d9791c; --ind-soft: #fbeedd; --pc-lav: #faf3ea; }
+
+    /* ---- RockX dark hero (reference redesign) ---- */
+    .rx-hero-wrap { background:
+        linear-gradient(90deg, rgba(11, 10, 14, .92) 0%, rgba(11, 10, 14, .8) 30%, rgba(11, 10, 14, .8) 100%),
+        url("proj2-assets/hero-bg.png") center right / cover no-repeat;
+      background-color: #0b0a0e; }
+    .rx-hero { grid-template-columns: 1.15fr 0.85fr; align-items: center; gap: 50px; }
+    .rx-copy { position: relative; z-index: 2; }
+    .rx-hero .pc-eyebrow2 { color: var(--ind); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 13px; }
+    .rx-titlerow { display: flex; align-items: center; gap: 18px; margin-top: 10px; }
+    .rx-logo { width: clamp(48px, 8vw, 92px); height: clamp(48px, 8vw, 92px);
+      display: grid; place-items: center; flex: none; }
+    .rx-logo svg { width: 100%; height: auto; display: block; }
+    .rx-hero .pc-title { color: #fff; margin: 0; }
+    .rx-tagline { color: #e6b483; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; font-weight: 600; margin: 16px 0 0; }
+    .rx-hero .pc-lead { color: #c6c6cf; max-width: 560px; margin-top: 20px; }
+    .rx-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; max-width: 560px; }
+    .rx-chip { display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px;
+      border: 1px solid rgba(217, 121, 28, .40); background: rgba(217, 121, 28, .08);
+      color: #f0ddc4; font-size: 13px; font-weight: 600; transition: background .2s ease, transform .2s ease; }
+    .rx-chip:hover { background: rgba(217, 121, 28, .18); transform: translateY(-2px); }
+    .rx-chip svg { width: 15px; height: 15px; fill: none; stroke: var(--ind); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .rx-meta { margin-top: 36px; }
+    .rx-meta dt { color: #8d8d97; }
+    .rx-meta dd { color: #fff; font-size: 15px; }
+
+    .rx-phone { display: flex; justify-content: center; position: relative; z-index: 2; }
+    .rx-phone-frame { position: relative; width: 300px; max-width: 78%; aspect-ratio: 300 / 620;
+      border-radius: 42px; border: 9px solid #1b191f; background: #000; overflow: hidden;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, .6), 0 0 0 1px rgba(217, 121, 28, .15); }
+    .rx-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 110px; height: 22px;
+      background: #000; border-radius: 0 0 16px 16px; z-index: 3; }
+    .rx-phone-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+    /* RockX wireframe gallery: individual screens (no background), each labelled */
+    .rx-wf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 26px; margin: 26px auto 0; max-width: 820px; }
+    .rx-wf figure { margin: 0; }
+    .rx-wf img { width: 100%; display: block; border-radius: 14px; border: 1px solid #e3e3ea; }
+    .rx-wf figcaption { margin-top: 16px; text-align: center; font-weight: 400; font-size: 14px; color: var(--muted); }
+    @media (max-width: 900px) { .rx-wf { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .rx-wf { grid-template-columns: 1fr; } }
+
+    /* Tour Plan phones: transparent PNGs — shadow follows the rounded frame */
+    .rx-tour { max-width: 780px; margin-left: auto; margin-right: auto; }
+    .rx-tour img { box-shadow: none !important; border-radius: 0; background: none;
+      filter: drop-shadow(0 18px 34px rgba(0, 0, 0, .32)); }
+
+    /* AR Navigation phones (4-up, transparent frames) */
+    .rx-nav { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 1000px; margin: 28px auto 0; }
+    .rx-nav figure { margin: 0; }
+    .rx-nav img { width: 100%; display: block; filter: drop-shadow(0 16px 30px rgba(0, 0, 0, .32)); }
+    .rx-nav figcaption { margin-top: 16px; text-align: center; font-weight: 400; font-size: 14px; color: var(--muted); }
+    @media (max-width: 760px) { .rx-nav { grid-template-columns: repeat(2, 1fr); } }
+    .rx-concert { grid-template-columns: repeat(5, 1fr); max-width: 1150px; }
+    @media (max-width: 760px) { .rx-concert { grid-template-columns: repeat(2, 1fr); } }
+
+    /* RockX design-system type specimens use Roboto */
+    .ds-sample { font-family: "Roboto", sans-serif; }
+
+    /* RockX extra components (dark theme, exact screen colours) */
+    .rxicon-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .rxicon-row i { width: 42px; height: 42px; border-radius: 12px; background: #1c1b22; border: 1px solid #2a2932; display: grid; place-items: center; }
+    .rxicon-row i svg { width: 20px; height: 20px; stroke: #E8891C; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .rxtab { display: inline-flex; background: #1c1b22; border: 1px solid #2a2932; border-radius: 12px; padding: 4px; gap: 4px; }
+    .rxtab span { padding: 8px 16px; border-radius: 9px; font-size: 13px; color: #8d8d97; font-weight: 600; }
+    .rxtab span.on { background: #E8891C; color: #fff; }
+    .rxstep { display: flex; list-style: none; margin: 0; padding: 0; width: 100%; }
+    .rxstep li { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; font-size: 12.5px; color: #8d8d97; text-align: center; }
+    .rxstep li em { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #26262e; color: #8d8d97; font-weight: 700; font-size: 13px; font-style: normal; z-index: 1; }
+    .rxstep li::before { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 2px; background: #2a2932; z-index: 0; }
+    .rxstep li:first-child::before { display: none; }
+    .rxstep li.active em, .rxstep li.done em { background: #E8891C; color: #fff; }
+    .rxstep li.active, .rxstep li.done { color: #fff; font-weight: 600; }
+    .rxstep li.done::before, .rxstep li.active::before { background: #E8891C; }
+    .rxprog-label { font-size: 12.5px; color: #8d8d97; margin-bottom: 8px; font-weight: 600; }
+    .rxprog { height: 8px; border-radius: 999px; background: #26262e; overflow: hidden; width: 100%; }
+    .rxprog i { display: block; height: 100%; background: linear-gradient(90deg, #E8891C, #F5A94D); border-radius: 999px; }
+    .rxopt { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #d7d7de; padding: 4px 0; }
+    .rxradio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #3a3a44; flex: none; position: relative; }
+    .rxradio.on { border-color: #E8891C; }
+    .rxradio.on::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #E8891C; }
+    .rxcheck { width: 20px; height: 20px; border-radius: 6px; border: 2px solid #3a3a44; flex: none; display: grid; place-items: center; color: #fff; font-size: 12px; }
+    .rxcheck.on { background: #E8891C; border-color: #E8891C; }
+    .rxqty { display: inline-flex; align-items: center; border: 1px solid #2a2932; border-radius: 10px; overflow: hidden; }
+    .rxqty button { background: #1c1b22; color: #E8891C; border: none; width: 36px; height: 36px; font-size: 18px; cursor: pointer; }
+    .rxqty span { min-width: 42px; text-align: center; color: #fff; font-size: 14px; font-weight: 600; }
+    .rxselect { display: flex; align-items: center; justify-content: space-between; background: #1c1b22; border: 1px solid #2a2932; border-radius: 12px; padding: 12px 14px; color: #d7d7de; font-size: 14px; width: 100%; }
+    .rxselect svg { width: 16px; height: 16px; stroke: #8d8d97; fill: none; stroke-width: 2.4; }
+
+    /* Component library (dark panel, RockX styling) */
+    .ds-comp { background: #141319; border: 1px solid #2a2932; border-radius: 20px;
+      padding: 36px; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px 44px; }
+    .ds-cgroup { min-width: 0; }
+    .ds-clabel { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #d9791c; font-weight: 700; margin-bottom: 16px; }
+    .ds-crow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .ds-cnote { margin-top: 16px; font-size: 13px; line-height: 1.55; color: #9a9aa4; }
+    .rxb { font-family: "Roboto", sans-serif; font-size: 14px; font-weight: 600; padding: 11px 20px; border-radius: 12px; border: none; cursor: pointer; }
+    .rxb-primary { background: #d9791c; color: #fff; }
+    .rxb-secondary { background: transparent; color: #f0ddc4; border: 1px solid rgba(217, 121, 28, .5); }
+    .rxb-disabled { background: #26262e; color: #6b6b76; cursor: not-allowed; }
+    .rxchip-a { background: rgba(217, 121, 28, .16); border: 1px solid rgba(217, 121, 28, .5); color: #f0ddc4; padding: 7px 15px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+    .rxchip-o { color: #d9791c; font-weight: 700; font-size: 13px; border: 1px solid rgba(217, 121, 28, .4); padding: 7px 13px; border-radius: 999px; }
+    .rxcard { display: flex; align-items: center; gap: 14px; background: #1c1b22; border: 1px solid #2a2932; border-radius: 14px; padding: 12px 14px; width: 100%; }
+    .rxcard-thumb { width: 48px; height: 48px; border-radius: 10px; background: linear-gradient(135deg, #3a2a12, #d9791c); flex: none; }
+    .rxcard > div { flex: 1; min-width: 0; }
+    .rxcard b { display: block; color: #fff; font-size: 15px; }
+    .rxcard small { color: #9a9aa4; font-size: 12.5px; }
+    .rxcard-arrow { color: #6b6b76; font-size: 24px; line-height: 1; }
+    .rxinput { display: flex; align-items: center; gap: 10px; background: #1c1b22; border: 1px solid #2a2932; border-radius: 12px; padding: 12px 14px; color: #7a7a85; font-size: 14px; }
+    .rxinput svg { width: 16px; height: 16px; stroke: #7a7a85; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .ds-toggle-row { display: flex; align-items: center; justify-content: space-between; color: #d7d7de; font-size: 14px; }
+    .rxtoggle { width: 46px; height: 26px; border-radius: 999px; background: #d9791c; position: relative; flex: none; }
+    .rxtoggle i { position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; }
+    .ds-scale { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 26px; }
+    .ds-scale h4 { font-size: 17px; color: #23232b; font-weight: 700; margin: 0 0 8px; }
+    .ds-scale p { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0; }
+    @media (max-width: 760px) { .ds-comp { grid-template-columns: 1fr; } .ds-scale { grid-template-columns: 1fr; } }
+
+    /* Numbered labels for the Designing RockX figures */
+    .rx-fignum { font-size: 21px; font-weight: 700; color: #23232b; margin: 48px 0 16px; letter-spacing: -0.01em; }
+    .rx-fignum .n { color: var(--ind); margin-right: 6px; }
+    .rx-fignum + .pc-fig { margin-top: 0; }
+
+    /* Grounded in real tasks: black cards; hover to 70%-transparent brown with a thin solid brown border */
+    .pc-goals .pc-goal { background: rgba(217, 121, 28, .30); color: #fff; border: 1px solid rgba(217, 121, 28, .60);
+      transition: background .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease; }
+    .pc-goals .pc-goal:hover { background: rgba(0, 0, 0, .75); border-color: #d9791c;
+      color: #fff; transform: none; box-shadow: none; }
+
+    /* Only the "What I owned" box styled like the hero feature chips; left box unchanged */
+    .pc-role .pc-rolebox.mine { border: 1px solid rgba(217, 121, 28, .40); background: rgba(217, 121, 28, .08); }
+    .pc-role .pc-rolebox.mine h4 { color: var(--ind); }
+    /* This box stays dark (not a light panel), so keep its text light in dark mode */
+    .dark .pc-role .pc-rolebox.mine p { color: var(--ink); }
+
+    @media (max-width: 860px) {
+      .rx-hero { grid-template-columns: 1fr; }
+      .rx-phone { margin-top: 20px; }
+    }
+  </style>
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+</head>
+
+<body id="top">
+  <canvas class="bg-dots" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="pc-nav">
+    <div class="pc-nav-inner">
+      <a href="index.html#work" class="pc-back">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="11 6 5 12 11 18" /></svg>
+        Back to Home
+      </a>
+      <nav class="pc-crumb"><a href="index.html#top">Home</a> <span>•</span> <a href="index.html#work">Work</a> <span>•</span> <b>RockX · Museum App</b></nav>
+      <a href="#more" class="btn-pill btn-dark btn-swap"><span class="swap"><span>contact</span><span aria-hidden="true">contact</span></span></a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="pc-hero-wrap rx-hero-wrap">
+    <div class="pc pc-hero rx-hero">
+      <div class="rx-copy">
+        <span class="pc-eyebrow2">Mobile B2C App</span>
+        <div class="rx-titlerow">
+          <span class="rx-logo" aria-hidden="true"><svg viewBox="0 0 170 146"><path fill="#ffffff" fill-rule="evenodd" d="M45.87 45.25C49.32 35.97 52.43 29.12 63.86 28.71C66.29 28.62 69.49 30.27 71.68 29.86C74.63 29.3 77.53 25.36 83.25 25.02C86.2 24.84 89.21 25.21 91.97 26.3C93.29 26.82 94.82 28.37 96.26 28.4C97.37 28.42 98.36 27.52 99.37 27.17C103.16 25.88 107.4 25.94 111.21 27.11C115.53 28.43 118.26 32.94 120.43 33.76C121.94 34.32 124.6 33.52 126.25 33.61C130.4 33.85 133.9 35.55 137 38.26C143.23 43.7 143.01 51.67 143.01 59.25C143.01 64.22 143.53 69.54 142.72 74.46C141.02 84.91 137.48 95.02 135.18 105.34C133.69 112 133.79 121.79 129.54 126.78C123.37 134.03 106.96 131.41 98.25 131.41C90.12 131.4 69.89 133.28 63.39 129.83C55.18 125.46 58.07 118.89 54.61 115.15C47.53 107.48 34.14 98.14 29.13 89.63C26.36 84.93 26.87 79.5 26.86 74.25C26.86 63.85 26.2 52.23 37.35 47.13C40.11 45.87 43.06 46.07 45.87 45.25ZM96.25 54.14C93.04 53.61 94.23 49.44 94.23 46.75C94.23 41.68 92.34 35.51 86.25 35.04C79.8 34.53 75.45 38.88 75.41 45.25C75.39 47.7 76.43 52.79 74.25 54.14C71.79 53.11 73.92 43.82 69.46 40.29C64.98 36.74 57.91 39 56.29 44.54C53.81 53.01 57.77 69.48 55.75 78.8C52.84 77.44 53.59 74.05 53.59 71.25C53.59 65.3 54.03 56.65 46.24 55.51C34.73 53.82 37.01 68.86 37.01 75.75C37.01 79.03 36.4 82.63 38.26 85.51C39.46 87.38 41.44 88.72 43.02 90.23C48.88 95.82 59.11 103.96 63.61 110.13C65.81 113.16 64.58 118.86 67.9 120.82C71.33 122.86 77.88 121.59 81.75 121.59C90.58 121.58 99.42 121.59 108.25 121.59C111.87 121.59 116.13 122.2 119.66 121.38C124.29 120.31 124.04 108.83 125.25 104.47C127.71 95.57 131.69 83.08 132.79 74.15C133.37 69.48 132.86 64.46 132.86 59.75C132.86 53.19 133.93 44.07 125.03 43.25C116.05 42.43 118.15 52.72 114.75 54.14C112.21 51.36 114.54 44.68 112.86 40.86C109.73 33.75 99.18 35.2 97.2 42.38C96.24 45.87 98.45 51.32 96.25 54.14ZM111.2 61.25C113.39 63.5 112.77 66.85 112.77 69.75C112.77 76.08 112.77 82.42 112.77 88.75C112.77 91.55 113.12 94.94 110.54 96.77C107.08 99.23 95.85 100.02 95.52 93.73C95.17 87.07 105.23 88.7 108.96 88.79C108.96 84.38 108.96 79.98 108.96 75.58C102.39 77.51 95.82 79.45 89.25 81.38C87.09 87.93 92.61 102.28 84.13 104.83C80.54 105.92 71.48 105.81 71.56 100.26C71.64 93.92 81.13 95.54 84.75 95.75C87.06 88.35 83.2 76.83 85.41 69.75C86.16 67.35 89.18 67.19 91.24 66.49C96 64.87 106.59 60.42 111.2 61.25Z"/></svg></span>
+          <h1 class="pc-title">RockX</h1>
+        </div>
+        <p class="rx-tagline">An immersive rock &amp; roll museum experience</p>
+        <p class="pc-lead">RockX is an immersive rock-music museum, <em>where rock lives.</em> I designed the visitor's mobile companion: an app that builds you a personalised tour, guides you through the halls with AR wayfinding, and brings every exhibit to life.</p>
+        <div class="rx-chips">
+          <span class="rx-chip"><svg viewBox="0 0 24 24"><path d="M12 21c4-5 7-8 7-11a7 7 0 1 0-14 0c0 3 3 6 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>AI Tour Planner</span>
+          <span class="rx-chip"><svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>AR Wayfinding</span>
+          <span class="rx-chip"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4z"/></svg>Interactive Exhibits</span>
+          <span class="rx-chip"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="4" y1="10" x2="20" y2="10"/></svg>Live Events</span>
+          <span class="rx-chip"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>Merch Shop</span>
+          <span class="rx-chip"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3 20c0-3.2 2.7-5 6-5s6 1.8 6 5"/><path d="M16 6.5a3 3 0 0 1 0 5.5"/><path d="M17.5 15c2 .6 3.5 2 3.5 5"/></svg>Community</span>
+        </div>
+        <dl class="pc-meta rx-meta">
+          <div><dt>My Role</dt><dd>Mobile B2C App · UX Designer</dd></div>
+          <div><dt>Team</dt><dd>3 (Web · Mobile · Admin)</dd></div>
+          <div><dt>Context</dt><dd>ISE 218 · Team 7 · Academic</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <main class="pc">
+    <!-- ===================== THE IDEA ===================== -->
+    <section class="pc-sec" style="border-top:none">
+      <h2 class="pc-h2">The idea.</h2>
+      <p class="pc-sub" style="max-width:780px;font-size:20px">A rock-music museum is a maze of halls, eras and artefacts: easy to wander, easy to miss the things you'd love. RockX's mobile app is the visitor's guide: scan a QR at the entrance, tell it what you're into, and it plans and leads a tour that fits you.</p>
+    </section>
+
+    <!-- ===================== MY ROLE ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">My role.</h2>
+      <p class="pc-sub">A three-person graduate team built RockX across three surfaces. The mobile experience was mine, end to end.</p>
+      <div class="pc-role">
+        <div class="pc-rolebox">
+          <h4>The team project</h4>
+          <p>RockX as a full platform, a consumer website, the visitor mobile app, and an admin tool. Shared research and brand, with each surface owned by one designer.</p>
+        </div>
+        <div class="pc-rolebox mine">
+          <h4>What I owned</h4>
+          <p>The Mobile B2C app: task modelling for the visitor, the information architecture, every flow, and the full visual design of the dark, AR-led experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Grounded in real tasks.</h2>
+      <p class="pc-sub">Before any screens, I modelled what visitors actually do, then prioritised by how often and how widely each task happens. Four "frequent" jobs anchored the app.</p>
+      <div class="pc-goals">
+        <div class="pc-goal">Follow &amp; navigate your tour</div>
+        <div class="pc-goal">Experience every exhibit</div>
+        <div class="pc-goal">Build a quick tour as a walk-in</div>
+        <div class="pc-goal">AR content &amp; instruments</div>
+      </div>
+    </section>
+
+    <!-- ===================== USER JOURNEY MAP ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">User journey map.</h2>
+      <p class="pc-sub">I mapped the full visitor journey, from arriving at the museum to leaving after the tour. Charting each stage's actions, touchpoints, and emotional highs and lows showed where the experience could guide people better. Those low points shaped the app's flows.</p>
+      <figure class="pc-fig">
+        <img src="proj2-assets/user-journey-map.png" alt="RockX visitor journey map across the museum visit, with actions, touchpoints, an emotional curve, and opportunities" />
+      </figure>
+    </section>
+
+    <!-- ===================== DESIGNING ROCKX ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Designing RockX.</h2>
+      <p class="pc-sub">With the journey mapped, I worked out what the app had to hold and how it should be structured. I defined the core objects and actions, prioritised features by frequency and impact, and shaped it all into a clear information architecture.</p>
+      <h4 class="rx-fignum"><span class="n">1.</span> Object-Action Matrix</h4>
+      <figure class="pc-fig">
+        <img src="proj2-assets/object-action-matrix.png" alt="RockX Object Action Matrix mapping content objects against the actions visitors take" />
+        <figcaption>The app's core objects mapped against the actions visitors perform with each.</figcaption>
+      </figure>
+      <h4 class="rx-fignum"><span class="n">2.</span> Prioritization Matrix</h4>
+      <figure class="pc-fig">
+        <img src="proj2-assets/prioritization-matrix.png" alt="RockX feature prioritization matrix plotting features by frequency of use against impact" />
+        <figcaption>Features plotted by frequency of use against impact, to decide what to design first.</figcaption>
+      </figure>
+      <h4 class="rx-fignum"><span class="n">3.</span> Information Architecture</h4>
+      <figure class="pc-fig">
+        <img src="proj2-assets/ia.png" alt="RockX information architecture sitemap organised around the visitor experience" />
+        <figcaption>The resulting structure, organised around the visit and the high-priority tasks.</figcaption>
+      </figure>
+
+      <h3 class="pc-h3">Wireframes.</h3>
+      <div class="rx-wf">
+        <figure><img src="proj2-assets/wf-home.png?v=2" alt="RockX home screen wireframe" /><figcaption>Home</figcaption></figure>
+        <figure><img src="proj2-assets/wf-map.png?v=2" alt="RockX museum map wireframe" /><figcaption>Map</figcaption></figure>
+        <figure><img src="proj2-assets/wf-tickets.png?v=2" alt="RockX tickets wireframe" /><figcaption>Tickets</figcaption></figure>
+        <figure><img src="proj2-assets/wf-exhibit-details.png?v=2" alt="RockX exhibit details wireframe" /><figcaption>Exhibit Details</figcaption></figure>
+        <figure><img src="proj2-assets/wf-ar-scan.png?v=2" alt="RockX AR scan wireframe" /><figcaption>AR Scan</figcaption></figure>
+        <figure><img src="proj2-assets/wf-events.png?v=2" alt="RockX events wireframe" /><figcaption>Events</figcaption></figure>
+        <figure><img src="proj2-assets/wf-event-details.png?v=2" alt="RockX event details wireframe" /><figcaption>Event Details</figcaption></figure>
+        <figure><img src="proj2-assets/wf-merchandise.png?v=2" alt="RockX merchandise wireframe" /><figcaption>Merchandise</figcaption></figure>
+        <figure><img src="proj2-assets/wf-cart.png?v=2" alt="RockX cart wireframe" /><figcaption>Cart</figcaption></figure>
+        <figure><img src="proj2-assets/wf-profile.png?v=2" alt="RockX profile wireframe" /><figcaption>Profile</figcaption></figure>
+        <figure><img src="proj2-assets/wf-checkin.png?v=2" alt="RockX check-in wireframe" /><figcaption>Check-In</figcaption></figure>
+        <figure><img src="proj2-assets/wf-checkout.png?v=2" alt="RockX checkout wireframe" /><figcaption>Checkout</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===================== PLAN BUILDER ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">A tour built around you.</h2>
+      <p class="pc-sub">The Quick Plan Builder turns a cold start into a personalised route in under a minute. A visitor scans the entrance QR, picks the music and era they love, and the app assembles a tour of the exhibits worth their time, no prior planning, no app-store friction.</p>
+      <div class="pc-shots rx-tour">
+        <figure style="margin:0"><img src="proj2-assets/tp-quick-plan-builder.png?v=4" alt="RockX Quick Plan Builder screen choosing music genres and eras" /><figcaption>Quick Plan Builder</figcaption></figure>
+        <figure style="margin:0"><img src="proj2-assets/tp-custom-plan.png?v=4" alt="RockX generated custom tour plan with ordered stops" /><figcaption>Your Custom Plan</figcaption></figure>
+        <figure style="margin:0"><img src="proj2-assets/tp-edit-plan.png?v=4" alt="RockX edit plan screen reordering stops" /><figcaption>Edit Plan</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===================== AR WAYFINDING ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Wayfinding, reimagined with AR.</h2>
+      <p class="pc-sub">The signature of the app: instead of a paper map, RockX paints a glowing path on the floor through your camera, with a live mini-map and a 3-D model of the museum to orient by. Getting lost stops being part of the visit.</p>
+      <div class="rx-nav">
+        <figure><img src="proj2-assets/arnav-1.png" alt="RockX AR floor-path navigation to the Guitar Collection" /><figcaption>AR Navigation</figcaption></figure>
+        <figure><img src="proj2-assets/arnav-2.png" alt="RockX AR scan of an exhibit guitar" /><figcaption>AR Scan</figcaption></figure>
+        <figure><img src="proj2-assets/arnav-3.png" alt="RockX exhibit details for the 1963 Fender Stratocaster" /><figcaption>Exhibit Details</figcaption></figure>
+        <figure><img src="proj2-assets/arnav-4.png" alt="RockX museum map for navigation" /><figcaption>Museum Map</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===================== CONCERTS ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Live at the concert.</h2>
+      <p class="pc-sub">RockX turns a live show into something you can follow along with: see who's on the main stage, track the setlist song by song, browse related media and merch, and stream the moment straight to your socials.</p>
+      <div class="rx-nav rx-concert">
+        <figure><img src="proj2-assets/concert-1.png" alt="RockX live concert now playing" /><figcaption>Now Playing</figcaption></figure>
+        <figure><img src="proj2-assets/concert-2.png" alt="RockX concert main stage" /><figcaption>Main Stage</figcaption></figure>
+        <figure><img src="proj2-assets/concert-3.png" alt="RockX concert setlist" /><figcaption>Setlist</figcaption></figure>
+        <figure><img src="proj2-assets/concert-4.png" alt="RockX concert details and related merch" /><figcaption>Concert Details</figcaption></figure>
+        <figure><img src="proj2-assets/concert-5.png" alt="RockX stream setup to go live on socials" /><figcaption>Go Live</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===================== ACROSS THE VISIT ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Across the whole visit.</h2>
+      <p class="pc-sub">One dark, music-first visual language: high contrast for dim galleries, warm amber accents pulled straight from stage lighting, carried from the first scan to entry and tickets.</p>
+      <div class="rx-nav">
+        <figure><img src="proj2-assets/evt-1.png" alt="RockX home dashboard" /><figcaption>Home</figcaption></figure>
+        <figure><img src="proj2-assets/evt-2.png" alt="RockX synced tour plan" /><figcaption>Tour Plan</figcaption></figure>
+        <figure><img src="proj2-assets/evt-3.png" alt="RockX browse events" /><figcaption>Browse Events</figcaption></figure>
+        <figure><img src="proj2-assets/evt-4.png" alt="RockX event details" /><figcaption>Event Details</figcaption></figure>
+        <figure><img src="proj2-assets/cart-1.png" alt="RockX cart" /><figcaption>My Cart</figcaption></figure>
+        <figure><img src="proj2-assets/cart-2.png" alt="RockX order confirmed with pickup QR" /><figcaption>Order Confirmed</figcaption></figure>
+        <figure><img src="proj2-assets/cart-3.png" alt="RockX guitar workshop details" /><figcaption>Workshop Details</figcaption></figure>
+        <figure><img src="proj2-assets/cart-4.png" alt="RockX tour updated confirmation" /><figcaption>Tour Updated</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===================== DESIGN SYSTEM ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Design system.</h2>
+      <p class="pc-sub">RockX runs on Roboto and a dark, stage-lit palette. One type scale and a focused set of colours keep the atmosphere consistent from the first scan to the last exhibit.</p>
+
+      <h3 class="pc-h3">Typography.</h3>
+      <div class="ds-type">
+        <div class="ds-row">
+          <div class="ds-spec"><b>Display</b>Roboto Black · 64 / 72</div>
+          <div class="ds-sample" style="font-weight:900; font-size:clamp(40px,6vw,64px); letter-spacing:-.02em">RockX</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 1</b>Roboto Bold · 44 / 52</div>
+          <div class="ds-sample" style="font-weight:700; font-size:clamp(32px,4.6vw,44px); letter-spacing:-.01em">Wayfinding, reimagined</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 2</b>Roboto Medium · 32 / 40</div>
+          <div class="ds-sample" style="font-weight:500; font-size:clamp(24px,3.4vw,32px)">Live at the concert</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 3</b>Roboto Medium · 22 / 30</div>
+          <div class="ds-sample" style="font-weight:500; font-size:22px">Start AR navigation</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Body</b>Roboto Regular · 16 / 26</div>
+          <div class="ds-sample" style="font-weight:400; font-size:16px; line-height:1.6; color:#4a4a55">Scan the entrance QR, tell RockX the music you love, and it builds a tour of the exhibits worth your time.</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Small / Caption</b>Roboto Regular · 13 / 20</div>
+          <div class="ds-sample" style="font-weight:400; font-size:13px; line-height:1.5; color:#6b6b76">AR floor-path navigation, a live mini-map, and a 3D model of the museum to orient by.</div>
+        </div>
+      </div>
+
+      <h3 class="pc-h3">Colours.</h3>
+      <div class="ds-colors">
+        <div class="ds-swatch"><span style="background:#D9791C"></span><b>Amber (Primary)</b><i>#D9791C</i></div>
+        <div class="ds-swatch"><span style="background:#EF7A1E"></span><b>Ember</b><i>#EF7A1E</i></div>
+        <div class="ds-swatch"><span style="background:#6FB454"></span><b>Green</b><i>#6FB454</i></div>
+        <div class="ds-swatch"><span style="background:#0F0E13"></span><b>Charcoal</b><i>#0F0E13</i></div>
+        <div class="ds-swatch"><span style="background:#1E1D24"></span><b>Surface</b><i>#1E1D24</i></div>
+        <div class="ds-swatch"><span style="background:#FFFFFF; border:1px solid #e7e6f0"></span><b>White</b><i>#FFFFFF</i></div>
+        <div class="ds-swatch"><span style="background:#8D8D97"></span><b>Slate</b><i>#8D8D97</i></div>
+        <div class="ds-swatch"><span style="background:#FBE2CE"></span><b>Sand</b><i>#FBE2CE</i></div>
+      </div>
+
+      <h3 class="pc-h3">Components.</h3>
+      <p class="pc-sub">A shared library of the pieces that repeat across the app, each with a rule for when to use it, so every screen is assembled the same way.</p>
+      <div class="ds-comp">
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Buttons</span>
+          <div class="ds-crow">
+            <button type="button" class="rxb rxb-primary">Start AR Navigation</button>
+            <button type="button" class="rxb rxb-secondary">Edit Plan</button>
+            <button type="button" class="rxb rxb-disabled" disabled>Unavailable</button>
+          </div>
+          <p class="ds-cnote">One amber primary per screen for the main action; an outline secondary beside it; disabled greys out and loses the fill.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Chips &amp; Tags</span>
+          <div class="ds-crow">
+            <span class="rxchip-a">Classic Rock</span>
+            <span class="rxchip-a">Hard Rock</span>
+            <span class="rxchip-o">AR</span>
+          </div>
+          <p class="ds-cnote">Filled amber chips for selectable filters (music, era); a text-amber tag flags AR-enabled exhibits.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Exhibit / stop card</span>
+          <div class="rxcard">
+            <span class="rxcard-thumb"></span>
+            <div><b>Guitar Collection</b><small>Hall A · 35 min · AR</small></div>
+            <span class="rxcard-arrow">›</span>
+          </div>
+          <p class="ds-cnote">The workhorse list row for tour stops and exhibits: thumbnail, title, meta, and a chevron to drill in.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Input &amp; toggle</span>
+          <div class="ds-crow" style="flex-direction:column; align-items:stretch; gap:14px; width:100%">
+            <div class="rxinput"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>Search exhibits, artists…</div>
+            <div class="ds-toggle-row"><span>AR guidance</span><span class="rxtoggle"><i></i></span></div>
+          </div>
+          <p class="ds-cnote">Dark fields with an amber focus ring; toggles fill amber when on. Used for search and per-feature settings.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Icons</span>
+          <div class="rxicon-row">
+            <i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg></i>
+            <i><svg viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="3" y="13" width="4" height="7" rx="2"/><rect x="17" y="13" width="4" height="7" rx="2"/></svg></i>
+            <i><svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 0 0 0 6v2a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-2a2 2 0 0 0 0-6V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1z"/><line x1="15" y1="6" x2="15" y2="18" stroke-dasharray="2 2"/></svg></i>
+            <i><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="4" y1="10" x2="20" y2="10"/></svg></i>
+            <i><svg viewBox="0 0 24 24"><path d="M12 21c4-5 7-8 7-11a7 7 0 1 0-14 0c0 3 3 6 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></i>
+            <i><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 3.5V16H4z"/></svg></i>
+          </div>
+          <p class="ds-cnote">A single-weight amber line-icon set for the tab bar and actions; 2px strokes, rounded caps.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Tabs</span>
+          <div class="rxtab"><span class="on">Upcoming</span><span>Past Events</span></div>
+          <p class="ds-cnote">Segmented control for switching views (upcoming vs past events, merch categories); the active tab fills amber.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Progress</span>
+          <div style="width:100%"><div class="rxprog-label">Step 1 of 4 · 25%</div><div class="rxprog"><i style="width:25%"></i></div></div>
+          <p class="ds-cnote">Shows how far through the Quick Plan Builder a visitor is, so the short setup feels finishable.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Radio &amp; Checkbox</span>
+          <div class="ds-crow" style="flex-direction:column; align-items:stretch; gap:8px; width:100%">
+            <div class="rxopt"><span class="rxradio on"></span> Facebook Live</div>
+            <div class="rxopt"><span class="rxradio"></span> Instagram Live</div>
+            <div class="rxopt"><span class="rxcheck on">✓</span> Classic Rock</div>
+            <div class="rxopt"><span class="rxcheck"></span> Hard Rock</div>
+          </div>
+          <p class="ds-cnote">Radios for single choices (where to stream); checkboxes for multi-select music and era in the quiz.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Quantity stepper</span>
+          <div class="rxqty"><button type="button">−</button><span>2</span><button type="button">+</button></div>
+          <p class="ds-cnote">Adjusts ticket and merch quantities in the cart; amber controls on a dark field.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Dropdown</span>
+          <div class="rxselect">Select a hall <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <p class="ds-cnote">For constrained choices like hall or genre; expands to a scrollable list on tap.</p>
+        </div>
+      </div>
+
+      <h3 class="pc-h3">Built to scale.</h3>
+      <div class="ds-scale">
+        <div>
+          <h4>Built from patterns</h4>
+          <p>I pulled the pieces that kept repeating in the flows into tokens and components, so the system grew out of real screens rather than theory.</p>
+        </div>
+        <div>
+          <h4>Shared across surfaces</h4>
+          <p>The same library and tokens fed the consumer website, the visitor app, and the admin tool, keeping three designers aligned without re-deciding the basics.</p>
+        </div>
+        <div>
+          <h4>Faster, consistent</h4>
+          <p>New screens were assembled from existing components, which cut rework and kept the dark, stage-lit look identical from the first scan to the last exhibit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TAKEAWAYS ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">What it shows.</h2>
+      <p class="pc-sub" style="max-width:760px;font-size:18px">RockX was about designing an <em>experience</em>, not just an interface: atmosphere, orientation, and the feeling of being guided. It pushed me on mood and craft (a confident dark theme) and on grounding a flashy idea like AR in the boring, essential question: <em>what does the visitor actually need to do next?</em></p>
+    </section>
+  </main>
+
+  <!-- ===================== MORE WORK ===================== -->
+  <section class="pc-next-wrap" id="more">
+    <div class="pc pc-next">
+      <div>
+        <span class="pc-eyebrow">Next Project</span>
+        <h2>Hearty Kitchen · Driver App</h2>
+        <p>A delivery app for a wellness meal-kit service, tested with drivers.</p>
+      </div>
+      <a href="project3.html" class="btn-pill">View Project →</a>
+    </div>
+  </section>
+  <div class="pc pc-foot">
+    <span>&copy; 2026 Mounika Reddy Madduri</span>
+    <a href="index.html#work"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="11 6 5 12 11 18" /></svg> Back to Portfolio</a>
+  </div>
+
+  <script>
+    const themeBtn = document.querySelector(".theme-toggle");
+    if (themeBtn) themeBtn.addEventListener("click", () => { const d = document.documentElement.classList.toggle("dark"); try { localStorage.setItem("theme", d ? "dark" : "light"); } catch (e) {} });
+    (function bgDots() {
+      const canvas = document.querySelector(".bg-dots"); if (!canvas) return;
+      const ctx = canvas.getContext("2d"), DPR = Math.min(2, window.devicePixelRatio || 1);
+      const GAP = 26, RAD = 110, RAD2 = RAD * RAD, STR = 2.2, SPRING = 0.06, DAMP = 0.85;
+      let W = 0, H = 0, dots = [], mx = -1e4, my = -1e4, mouseIn = false;
+      const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+      function gcol(x) { let t = Math.max(0, Math.min(1, x / (W || 1))); if (t < 0.5) { t *= 2; return `rgb(${lerp(241,142,t)},${lerp(92,51,t)},${lerp(77,224,t)})`; } t = (t - 0.5) * 2; return `rgb(${lerp(142,75,t)},${lerp(51,79,t)},${lerp(224,230,t)})`; }
+      function build() { W = window.innerWidth; H = window.innerHeight; canvas.style.width = W + "px"; canvas.style.height = H + "px"; canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); dots = []; for (let gy = 0; gy < H + GAP; gy += GAP) for (let gx = 0; gx < W + GAP; gx += GAP) { const x = gx + (Math.random() - 0.5) * GAP * 1.25, y = gy + (Math.random() - 0.5) * GAP * 1.25; dots.push({ hx: x, hy: y, ox: 0, oy: 0, vx: 0, vy: 0, size: 0.6 + Math.random() * 1.8, a: 0.22 + Math.random() * 0.42, col: gcol(x) }); } }
+      function frame() { ctx.clearRect(0, 0, W, H); for (const d of dots) { if (mouseIn) { const ddx = (d.hx + d.ox) - mx, ddy = (d.hy + d.oy) - my, dd = ddx * ddx + ddy * ddy; if (dd < RAD2) { const dist = Math.sqrt(dd) || 1, f = (1 - dist / RAD) * STR; d.vx += (ddx / dist) * f; d.vy += (ddy / dist) * f; } } d.vx = (d.vx - d.ox * SPRING) * DAMP; d.vy = (d.vy - d.oy * SPRING) * DAMP; d.ox += d.vx; d.oy += d.vy; ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx + d.ox - d.size / 2, d.hy + d.oy - d.size / 2, d.size, d.size); } ctx.globalAlpha = 1; requestAnimationFrame(frame); }
+      build();
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { for (const d of dots) { ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx - d.size / 2, d.hy - d.size / 2, d.size, d.size); } ctx.globalAlpha = 1; }
+      else { window.addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; mouseIn = true; }); document.addEventListener("pointerleave", () => { mouseIn = false; }); requestAnimationFrame(frame); }
+      let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+    })();
+  </script>
+</body>
+
+</html>

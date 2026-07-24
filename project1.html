@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MatchDog · Web · Mounika</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="project.css?v=23" />
+  <style>:root { --ind: #a8780a; --ind-soft: #f7eccc; --pc-lav: #faf6ea; } .pc-goal { background: #26262e; } .pc-hero-wrap { background: rgba(250, 244, 230, .8); }</style>
+  <style>
+    /* MatchDog design-system component library (light UI, amber accents — matches the product) */
+    .ds-comp { background: #fdfaf3; border: 1px solid #f0e6d3; border-radius: 20px;
+      padding: 36px; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px 44px; }
+    .ds-cgroup { min-width: 0; }
+    .ds-clabel { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #B9770A; font-weight: 700; margin-bottom: 16px; }
+    .ds-crow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .ds-cnote { margin-top: 16px; font-size: 13px; line-height: 1.55; color: #6b6b76; }
+    .mdb { font-family: "Poppins", sans-serif; font-size: 14px; font-weight: 600; padding: 11px 20px; border-radius: 12px; border: none; cursor: pointer; }
+    .mdb-primary { background: #E8A317; color: #fff; }
+    .mdb-secondary { background: #fff; color: #B9770A; border: 1px solid rgba(232, 163, 23, .5); }
+    .mdb-disabled { background: #efece4; color: #b0aa9c; cursor: not-allowed; }
+    .mdchip-a { background: #FEF3D7; border: 1px solid rgba(232, 163, 23, .4); color: #B9770A; padding: 7px 15px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+    .mdchip-o { color: #E8A317; font-weight: 700; font-size: 13px; border: 1px solid rgba(232, 163, 23, .4); padding: 7px 13px; border-radius: 999px; }
+    .mdcard { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid #f0e6d3; border-radius: 14px; padding: 12px 14px; width: 100%; box-shadow: 0 8px 20px rgba(60, 45, 15, .06); }
+    .mdcard-thumb { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, #FCE3A0, #E8A317); flex: none; }
+    .mdcard > div { flex: 1; min-width: 0; }
+    .mdcard b { display: block; color: #23232b; font-size: 15px; }
+    .mdcard small { color: #6b6b76; font-size: 12.5px; }
+    .mdcard-pct { color: #E8A317; font-weight: 700; font-size: 15px; }
+    .mdinput { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #ece7dc; border-radius: 12px; padding: 12px 14px; color: #9a9aa4; font-size: 14px; }
+    .mdinput svg { width: 16px; height: 16px; stroke: #9a9aa4; fill: none; stroke-width: 2; stroke-linecap: round; }
+    .ds-toggle-row { display: flex; align-items: center; justify-content: space-between; color: #4a4a55; font-size: 14px; }
+    .mdtoggle { width: 46px; height: 26px; border-radius: 999px; background: #E8A317; position: relative; flex: none; }
+    .mdtoggle i { position: absolute; top: 3px; right: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; }
+    .ds-scale { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; margin-top: 26px; }
+    .ds-scale h4 { font-size: 17px; color: #23232b; font-weight: 700; margin: 0 0 8px; }
+    .ds-scale p { font-size: 14px; line-height: 1.6; color: var(--muted); margin: 0; }
+    @media (max-width: 760px) { .ds-comp { grid-template-columns: 1fr; } .ds-scale { grid-template-columns: 1fr; } }
+    .ds-responsive { margin: 26px 0 0; text-align: center; }
+    .ds-responsive img { width: 100%; max-width: 780px; display: block; margin: 0 auto; }
+
+    /* breadcrumb */
+    .mdcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6b6b76; }
+    .mdcrumb b { color: #23232b; font-weight: 600; }
+    .mdcrumb span { color: #c7c2b6; }
+    /* stepper — card style with amber circles + checkmarks, dashed connectors (matches booking screen) */
+    .mdstep { display: flex; list-style: none; margin: 0; padding: 0; width: 100%; align-items: stretch; }
+    .mdstep li { flex: 1; display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid #f0e6d3; border-radius: 14px; padding: 14px 16px; font-size: 13px; color: #6b6b76; position: relative; }
+    .mdstep li:not(:last-child) { margin-right: 40px; }
+    .mdstep li:not(:last-child)::after { content: ""; position: absolute; right: -40px; top: 50%; width: 40px; border-top: 2px dashed #ddd4c3; }
+    .mdstep li em { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #E8A317; color: #fff; font-weight: 700; font-size: 14px; font-style: normal; flex: none; }
+    .mdstep li b { display: block; color: #23232b; font-size: 14px; font-weight: 700; }
+    .mdstep li small { display: block; font-size: 11.5px; color: #9a9488; margin-top: 1px; }
+    .mdstep li.active { background: #FEF3D7; border-color: #f3dcae; }
+    /* progress bar */
+    .mdprog-label { font-size: 12.5px; color: #6b6b76; margin-bottom: 8px; font-weight: 600; }
+    .mdprog { height: 8px; border-radius: 999px; background: #efece4; overflow: hidden; width: 100%; }
+    .mdprog i { display: block; height: 100%; background: linear-gradient(90deg, #E8A317, #F5C859); border-radius: 999px; }
+    /* radio & checkbox */
+    .mdopt { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #4a4a55; padding: 4px 0; }
+    .mdradio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #cdc8bc; flex: none; position: relative; }
+    .mdradio.on { border-color: #E8A317; }
+    .mdradio.on::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #E8A317; }
+    .mdcheck { width: 20px; height: 20px; border-radius: 6px; border: 2px solid #cdc8bc; flex: none; display: grid; place-items: center; color: #fff; font-size: 12px; }
+    .mdcheck.on { background: #E8A317; border-color: #E8A317; }
+    /* dropdown */
+    .mdselect { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid #ece7dc; border-radius: 12px; padding: 12px 14px; color: #4a4a55; font-size: 14px; width: 100%; }
+    .mdselect svg { width: 16px; height: 16px; stroke: #9a9aa4; fill: none; stroke-width: 2.4; }
+    /* date strip + time slots (availability picker, matches booking screen) */
+    .mddate { display: flex; align-items: center; gap: 10px; width: 100%; }
+    .mddate-nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid #e4ddcf; background: #fff; display: grid; place-items: center; color: #8a8578; flex: none; font-size: 15px; line-height: 1; }
+    .mddate-list { display: flex; gap: 8px; flex: 1; overflow: hidden; }
+    .mddate-chip { flex: 1; min-width: 0; text-align: center; border: 1px solid #ece7dc; border-radius: 14px; padding: 8px 2px 9px; background: #fff; }
+    .mddate-chip .dow { font-size: 11px; color: #9a9488; display: block; }
+    .mddate-chip .num { font-size: 18px; font-weight: 700; color: #23232b; display: block; line-height: 1.25; }
+    .mddate-chip .mon { font-size: 10px; color: #9a9488; display: block; }
+    .mddate-chip.sel { border-color: #E8A317; background: #FEF9EE; box-shadow: 0 0 0 1px #E8A317 inset; }
+    .mddate-chip .chk { display: none; }
+    .mddate-chip.sel .chk { display: block; width: 15px; height: 15px; margin: 4px auto 0; border-radius: 50%; background: #E8A317; color: #fff; font-size: 9px; line-height: 15px; }
+    .mdtime { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+    .mdtime span { border: 1px solid #ece7dc; border-radius: 10px; padding: 8px 12px; font-size: 12.5px; color: #4a4a55; background: #fff; }
+    .mdtime span.sel { border-color: #E8A317; background: #FEF3D7; color: #B9770A; font-weight: 600; }
+  </style>
+  <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+</head>
+
+<body id="top">
+  <canvas class="bg-dots" aria-hidden="true"></canvas>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="pc-nav">
+    <div class="pc-nav-inner">
+      <a href="index.html#work" class="pc-back">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="11 6 5 12 11 18" /></svg>
+        Back to Home
+      </a>
+      <nav class="pc-crumb"><a href="index.html#top">Home</a> <span>•</span> <a href="index.html#work">Work</a> <span>•</span> <b>MatchDog · Web</b></nav>
+      <a href="#more" class="btn-pill btn-dark btn-swap"><span class="swap"><span>contact</span><span aria-hidden="true">contact</span></span></a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="pc-hero-wrap">
+    <div class="pc pc-hero">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="pc-paw-shape" viewBox="0 0 100 100">
+          <ellipse cx="50" cy="62" rx="22" ry="18"/>
+          <ellipse cx="27" cy="40" rx="8"  ry="11"/>
+          <ellipse cx="43" cy="30" rx="8"  ry="12"/>
+          <ellipse cx="60" cy="30" rx="8"  ry="12"/>
+          <ellipse cx="74" cy="41" rx="8"  ry="11"/>
+        </symbol>
+      </svg>
+
+      <!-- Paw track: starts at the laptop's lower-left, runs underneath it, curves up to the top-right corner -->
+      <div class="pc-paws" aria-hidden="true">
+        <svg class="pc-paw" style="--i:0;  --x:46%; --y:88%; --r:20deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:1;  --x:52%; --y:86%; --r:30deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:2;  --x:58%; --y:83%; --r:22deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:3;  --x:64%; --y:78%; --r:34deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:4;  --x:69%; --y:71%; --r:26deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:5;  --x:74%; --y:62%; --r:38deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:6;  --x:79%; --y:52%; --r:28deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:7;  --x:83%; --y:42%; --r:40deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:8;  --x:87%; --y:31%; --r:30deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:9;  --x:90%; --y:20%; --r:42deg"><use href="#pc-paw-shape"/></svg>
+        <svg class="pc-paw" style="--i:10; --x:93%; --y:10%; --r:32deg"><use href="#pc-paw-shape"/></svg>
+      </div>
+
+      <div class="pc-hero-copy">
+        <span class="pc-eyebrow2">B2C Website</span>
+        <h1 class="pc-title">MatchDog</h1>
+        <p class="pc-lead">MatchDog is a dog-adoption platform that matches people to the right dog by lifestyle, not just looks. I designed the consumer website: the front door where adopters take an AI match quiz, meet their best-fit dogs, and book a visit.</p>
+        <div class="pc-chips">Web UI&nbsp;&nbsp; Information Architecture&nbsp;&nbsp; Service Design <span class="pc-dotsep"><i></i><i></i></span></div>
+        <dl class="pc-meta">
+          <div><dt>My Role</dt><dd>B2C website</dd></div>
+          <div><dt>Team</dt><dd>3 (web · mobile · admin)</dd></div>
+          <div><dt>Context</dt><dd>Graduate team project</dd></div>
+        </dl>
+      </div>
+      <div class="pc-hero-media">
+        <span class="pc-pebble" aria-hidden="true"></span>
+        <span class="pc-pebble pc-pebble-sm" aria-hidden="true"></span>
+        <img src="proj1-assets/hero.png" alt="MatchDog shown on laptop and phone" style="width:100%; display:block; position:relative; z-index:1" />
+      </div>
+    </div>
+  </section>
+
+  <main class="pc">
+    <!-- ===================== THE IDEA ===================== -->
+    <section class="pc-sec" style="border-top:none">
+      <h2 class="pc-h2">The idea.</h2>
+      <p class="pc-sub" style="max-width:780px;font-size:17px">Too many adoptions fail because the dog and the person were never a good fit. MatchDog tackles that up front by first learning about your life. It then recommends the dogs you'll actually thrive with, and walks you all the way to a booked meet-and-greet.</p>
+    </section>
+
+    <!-- ===================== MY ROLE ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">My role.</h2>
+      <p class="pc-sub">A three-person graduate team built MatchDog across three surfaces. I designed the consumer-facing website end to end.</p>
+      <div class="pc-role">
+        <div class="pc-rolebox">
+          <h4>The team project</h4>
+          <p>MatchDog as a full platform, a consumer website, an adopter mobile app, and an admin tool for shelters. Research and brand were shared; each surface had one owner.</p>
+        </div>
+        <div class="pc-rolebox mine">
+          <h4>What I owned</h4>
+          <p>The B2C website: the information architecture, the match-quiz and adoption flows, the dog-browsing experience, and the full visual design of the site.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Grounded in real adopters.</h2>
+      <p class="pc-sub">We built five personas, from a divorced dad wanting a family companion to a first-time adopter who needs reassurance. We then modelled their tasks and prioritised them. Four jobs shaped the site.</p>
+      <div class="pc-goals">
+        <div class="pc-goal">Find a dog that fits your life</div>
+        <div class="pc-goal">Browse &amp; filter all dogs</div>
+        <div class="pc-goal">Book a meet-and-greet</div>
+        <div class="pc-goal">Sponsor, donate &amp; volunteer</div>
+      </div>
+    </section>
+
+    <!-- ===================== USER JOURNEY MAP ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">User journey map.</h2>
+      <p class="pc-sub">Before designing any screens, I mapped the full adoption journey for our primary persona. I charted each stage's actions, touchpoints, and emotional highs and lows to see where adopters lose confidence. Those low points became the opportunities that shaped the site's flows.</p>
+      <figure class="pc-fig jmemo" data-ujm>
+        <img src="proj1-assets/user-journey-map.png" alt="Adoption journey map across six stages with user actions, touchpoints, an emotional curve, and opportunities" />
+        <span class="jm-cover" aria-hidden="true"></span>
+        <span class="jm-trigger" aria-hidden="true"></span>
+        <svg class="jm-emoline" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d="M 260 799 C 350 792, 400 779, 486 779 S 630 763, 707 763 S 855 778, 936 778 S 1085 779, 1165 779 S 1300 759, 1377 759" />
+        </svg>
+        <span class="jm-emo" style="--x:16.93%; --y:78.03%; --i:0" aria-hidden="true">😐</span>
+        <span class="jm-emo" style="--x:31.64%; --y:76.07%; --i:1" aria-hidden="true">🙂</span>
+        <span class="jm-emo" style="--x:46.03%; --y:74.51%; --i:2" aria-hidden="true">😍</span>
+        <span class="jm-emo" style="--x:60.94%; --y:75.98%; --i:3" aria-hidden="true">😕</span>
+        <span class="jm-emo" style="--x:75.85%; --y:76.07%; --i:4" aria-hidden="true">😊</span>
+        <span class="jm-emo" style="--x:89.65%; --y:74.12%; --i:5" aria-hidden="true">🥰</span>
+        <span class="jm-lab" style="--x:16.93%">Curious</span>
+        <span class="jm-lab" style="--x:31.64%">Engaged</span>
+        <span class="jm-lab" style="--x:46.03%">Excited</span>
+        <span class="jm-lab" style="--x:60.94%">Confident</span>
+        <span class="jm-lab" style="--x:75.85%">Relieved</span>
+        <span class="jm-lab" style="--x:89.65%">Happy &amp;<br>Connected</span>
+      </figure>
+    </section>
+
+    <!-- ===================== DESIGNING MATCHDOG ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Designing MatchDog.</h2>
+      <p class="pc-sub">With the journey mapped, I worked out what the site had to hold and how it should be structured. I defined the core objects and actions, prioritised features by frequency and impact, and shaped it all into a clear information architecture.</p>
+      <figure class="pc-fig">
+        <img src="proj1-assets/object-action-matrix.png" alt="Object-Action Matrix mapping MatchDog's content objects against the actions users take" />
+        <figcaption>Object Action Matrix: the main content objects (dogs, donations, people, resources) mapped against the actions users perform with each.</figcaption>
+      </figure>
+      <figure class="pc-fig">
+        <img src="proj1-assets/prioritization-matrix.png" alt="Feature prioritization matrix plotting features by frequency of use against impact" />
+        <figcaption>Feature Prioritization Matrix: features plotted by frequency of use against impact, to decide what to focus the design on first.</figcaption>
+      </figure>
+      <figure class="pc-fig">
+        <img src="proj1-assets/ia.png" alt="MatchDog information architecture sitemap organized around user goals" />
+        <figcaption>Information Architecture: the resulting sitemap, organising content around adopter goals and the high-priority tasks.</figcaption>
+      </figure>
+
+      <h3 class="pc-h3">Wireframes.</h3>
+      <div class="wf-gallery">
+        <img src="proj1-assets/wf-homepage.png" alt="MatchDog homepage wireframe" />
+        <img src="proj1-assets/wf-ai-match-quiz.png" alt="AI match quiz wireframe" />
+        <img src="proj1-assets/wf-match-result.png" alt="Match results wireframe" />
+        <img src="proj1-assets/wf-dog-profile.png" alt="Dog profile wireframe" />
+        <img src="proj1-assets/wf-book-appointment.png" alt="Book appointment wireframe" />
+        <img src="proj1-assets/wf-ai-robodog.png" alt="AI RoboDog wireframe" />
+        <img src="proj1-assets/wf-donation-page.png" alt="Donation page wireframe" />
+        <img src="proj1-assets/wf-community-page.png" alt="Community page wireframe" />
+      </div>
+    </section>
+
+    <!-- ===================== MATCH FLOW ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Find your perfect dog.</h2>
+      <p class="pc-sub">The heart of the site is a 5-minute quiz that turns lifestyle answers into ranked, percentage-scored matches. It then hands off cleanly to booking a visit (Quiz → Matches → Appointment).</p>
+      <figure class="pc-fig">
+        <div class="pc-carousel" data-carousel>
+          <button class="pc-car-arrow prev" type="button" aria-label="Previous screen">&#8249;</button>
+          <div class="pc-car-viewport">
+            <div class="pc-car-track">
+              <div class="pc-car-slide"><div class="pc-browser"><div class="bar"><i></i><i></i><i></i></div><img src="proj1-assets/matchdog-quiz.png" alt="MatchDog lifestyle match quiz step" /></div></div>
+              <div class="pc-car-slide"><div class="pc-browser"><div class="bar"><i></i><i></i><i></i></div><img src="proj1-assets/matchdog-quiz-2.png" alt="MatchDog match quiz follow-up step" /></div></div>
+              <div class="pc-car-slide"><div class="pc-browser"><div class="bar"><i></i><i></i><i></i></div><img src="proj1-assets/matchdog-quiz-3.png" alt="MatchDog match quiz results step" /></div></div>
+            </div>
+          </div>
+          <button class="pc-car-arrow next" type="button" aria-label="Next screen">&#8250;</button>
+          <div class="pc-car-dots" aria-hidden="true"></div>
+        </div>
+        <figcaption style="max-width:none; white-space:nowrap">The match quiz keeps each step short and visual, with a clear progress path so adopters always know how far they have to go.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ===================== BROWSE ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Browse &amp; adopt.</h2>
+      <p class="pc-sub">For people who'd rather look around, a filterable browse view puts every available dog one click from a profile, and from there, a visit.</p>
+      <figure class="pc-fig">
+        <div class="pc-browser sm"><div class="bar"><i></i><i></i><i></i></div><img src="proj1-assets/browse-and-adopt.png" alt="MatchDog dog browsing and filtering view" /></div>
+      </figure>
+    </section>
+
+    <!-- ===================== AI ROBODOG ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Meet RoboDog.</h2>
+      <p class="pc-sub">Not everyone is ready for a live dog, and every new owner has questions. RoboDog is an always-on AI companion that answers anything about dogs, from breed and compatibility advice to training, health, and everyday care. It keeps adopters supported before they commit and long after they take a dog home.</p>
+      <figure class="pc-fig">
+        <div class="pc-browser sm"><div class="bar"><i></i><i></i><i></i></div><img src="proj1-assets/ai-robodog.png" alt="MatchDog RoboDog AI assistant answering dog-care questions" /></div>
+      </figure>
+    </section>
+
+    <!-- ===================== DESIGN SYSTEM ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">Design system.</h2>
+      <p class="pc-sub">MatchDog is built on Poppins and a warm, friendly palette. One type scale and a small set of colours keep every screen consistent.</p>
+
+      <h3 class="pc-h3">Typography.</h3>
+      <div class="ds-type">
+        <div class="ds-row">
+          <div class="ds-spec"><b>Display</b>Poppins ExtraBold · 64 / 72</div>
+          <div class="ds-sample" style="font-weight:800; font-size:clamp(40px,6vw,64px); letter-spacing:-.03em">MatchDog</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 1</b>Poppins Bold · 44 / 52</div>
+          <div class="ds-sample" style="font-weight:700; font-size:clamp(32px,4.6vw,44px); letter-spacing:-.02em">Find your perfect dog</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 2</b>Poppins SemiBold · 32 / 40</div>
+          <div class="ds-sample" style="font-weight:600; font-size:clamp(24px,3.4vw,32px)">Meet your best-fit matches</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Heading 3</b>Poppins SemiBold · 22 / 30</div>
+          <div class="ds-sample" style="font-weight:600; font-size:22px">Book a meet &amp; greet</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Body</b>Poppins Regular · 16 / 26</div>
+          <div class="ds-sample" style="font-weight:400; font-size:16px; line-height:1.6; color:#4a4a55">Take the lifestyle quiz and MatchDog recommends the dogs you'll actually thrive with, then walks you all the way to a booked visit.</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-spec"><b>Small / Caption</b>Poppins Regular · 13 / 20</div>
+          <div class="ds-sample" style="font-weight:400; font-size:13px; line-height:1.5; color:#6b6b76">Results are ranked by fit. Percentages show how well each dog suits your lifestyle.</div>
+        </div>
+      </div>
+
+      <h3 class="pc-h3">Colours.</h3>
+      <div class="ds-colors">
+        <div class="ds-swatch"><span style="background:#E8A317"></span><b>Amber (Primary)</b><i>#E8A317</i></div>
+        <div class="ds-swatch"><span style="background:#B9770A"></span><b>Deep Amber</b><i>#B9770A</i></div>
+        <div class="ds-swatch"><span style="background:#FEF3D7"></span><b>Amber Tint</b><i>#FEF3D7</i></div>
+        <div class="ds-swatch"><span style="background:#7C5CFC"></span><b>Purple (Secondary)</b><i>#7C5CFC</i></div>
+        <div class="ds-swatch"><span style="background:#CFC3F1"></span><b>Lilac</b><i>#CFC3F1</i></div>
+        <div class="ds-swatch"><span style="background:#6FB97A"></span><b>Green</b><i>#6FB97A</i></div>
+        <div class="ds-swatch"><span style="background:#23232B"></span><b>Ink</b><i>#23232B</i></div>
+        <div class="ds-swatch"><span style="background:#6B6B76"></span><b>Slate</b><i>#6B6B76</i></div>
+        <div class="ds-swatch"><span style="background:#F5F4FB; border:1px solid #e7e6f0"></span><b>Cloud</b><i>#F5F4FB</i></div>
+      </div>
+
+      <h3 class="pc-h3">Components.</h3>
+      <p class="pc-sub">A shared library of the pieces that repeat across the site, each with a rule for when to use it, so every screen is assembled the same way.</p>
+      <div class="ds-comp">
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Buttons</span>
+          <div class="ds-crow">
+            <button type="button" class="mdb mdb-primary">Book a visit</button>
+            <button type="button" class="mdb mdb-secondary">Save dog</button>
+            <button type="button" class="mdb mdb-disabled" disabled>Unavailable</button>
+          </div>
+          <p class="ds-cnote">One purple primary per screen for the main action; a secondary beside it; disabled greys out and loses the fill.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Chips &amp; Tags</span>
+          <div class="ds-crow">
+            <span class="mdchip-a">Low energy</span>
+            <span class="mdchip-a">Apartment</span>
+            <span class="mdchip-o">92% match</span>
+          </div>
+          <p class="ds-cnote">Filled chips for lifestyle filters in the quiz; a match-score tag flags how well a dog fits.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Dog match card</span>
+          <div class="mdcard">
+            <span class="mdcard-thumb"></span>
+            <div><b>Buddy · Labrador</b><small>2 yrs · Good with kids</small></div>
+            <span class="mdcard-pct">92%</span>
+          </div>
+          <p class="ds-cnote">The workhorse card for match results and browse: photo, name, key traits, and a fit score.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Input &amp; toggle</span>
+          <div class="ds-crow" style="flex-direction:column; align-items:stretch; gap:14px; width:100%">
+            <div class="mdinput"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>Search breeds, sizes, traits…</div>
+            <div class="ds-toggle-row"><span>Good with kids</span><span class="mdtoggle"><i></i></span></div>
+          </div>
+          <p class="ds-cnote">Light fields with a purple focus ring; toggles fill purple when on. Used for search and quiz filters.</p>
+        </div>
+        <div class="ds-cgroup" style="grid-column:1 / -1">
+          <span class="ds-clabel">Stepper</span>
+          <ol class="mdstep">
+            <li class="done"><em>✓</em><span><b>1. Quiz</b><small>Completed</small></span></li>
+            <li class="done"><em>✓</em><span><b>2. Your Matches</b><small>Completed</small></span></li>
+            <li class="active"><em>3</em><span><b>Book Appointment</b><small>Schedule a meet &amp; greet</small></span></li>
+          </ol>
+          <p class="ds-cnote">The card-style stepper across the quiz and booking flows; completed steps show an amber check, the current step is highlighted, joined by dashed connectors.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Breadcrumb</span>
+          <nav class="mdcrumb"><span>Home</span><span>›</span><span>Adopt</span><span>›</span><b>Book a visit</b></nav>
+          <p class="ds-cnote">Keeps the visitor oriented on the website; the current page is bold and unlinked.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Progress</span>
+          <div style="width:100%"><div class="mdprog-label">Step 2 of 6 · 33%</div><div class="mdprog"><i style="width:33%"></i></div></div>
+          <p class="ds-cnote">Shows how far through the lifestyle quiz the adopter is, so long forms feel finishable.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Radio &amp; Checkbox</span>
+          <div class="ds-crow" style="flex-direction:column; align-items:stretch; gap:8px; width:100%">
+            <div class="mdopt"><span class="mdradio on"></span> Meet &amp; Greet</div>
+            <div class="mdopt"><span class="mdradio"></span> Home visit</div>
+            <div class="mdopt"><span class="mdcheck on">✓</span> Good with kids</div>
+            <div class="mdopt"><span class="mdcheck"></span> Low maintenance</div>
+          </div>
+          <p class="ds-cnote">Radios for single choices (appointment type); checkboxes for multi-select lifestyle traits.</p>
+        </div>
+        <div class="ds-cgroup">
+          <span class="ds-clabel">Dropdown</span>
+          <div class="mdselect">Select location <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+          <p class="ds-cnote">For constrained choices like location or breed; expands to a scrollable list on tap.</p>
+        </div>
+        <div class="ds-cgroup" style="grid-column:1 / -1">
+          <span class="ds-clabel">Date &amp; time picker</span>
+          <div style="width:100%">
+            <div class="mddate">
+              <span class="mddate-nav">&#8249;</span>
+              <div class="mddate-list">
+                <div class="mddate-chip"><span class="dow">Mon</span><span class="num">19</span><span class="mon">May</span></div>
+                <div class="mddate-chip"><span class="dow">Tue</span><span class="num">20</span><span class="mon">May</span></div>
+                <div class="mddate-chip sel"><span class="dow">Wed</span><span class="num">21</span><span class="mon">May</span><span class="chk">&#10003;</span></div>
+                <div class="mddate-chip"><span class="dow">Thu</span><span class="num">22</span><span class="mon">May</span></div>
+                <div class="mddate-chip"><span class="dow">Fri</span><span class="num">23</span><span class="mon">May</span></div>
+                <div class="mddate-chip"><span class="dow">Sat</span><span class="num">24</span><span class="mon">May</span></div>
+                <div class="mddate-chip"><span class="dow">Sun</span><span class="num">25</span><span class="mon">May</span></div>
+              </div>
+              <span class="mddate-nav">&#8250;</span>
+            </div>
+            <div class="mdtime" style="margin-top:14px">
+              <span class="sel">10:00 AM</span><span>11:00 AM</span><span>12:00 PM</span><span>1:00 PM</span><span>2:00 PM</span><span>3:00 PM</span><span>4:00 PM</span>
+            </div>
+          </div>
+          <p class="ds-cnote">Availability picker for booking a meet &amp; greet: a scrollable row of dates with ‹ › nav, then time slots; the chosen date and time fill amber.</p>
+        </div>
+      </div>
+
+      <h3 class="pc-h3">Built to scale.</h3>
+      <div class="ds-scale">
+        <div>
+          <h4>Built from patterns</h4>
+          <p>I pulled the pieces that kept repeating in the flows into tokens and components, so the system grew out of real screens rather than theory.</p>
+        </div>
+        <div>
+          <h4>Shared across surfaces</h4>
+          <p>The same library and tokens fed the consumer website, the adopter app, and the shelter admin tool, keeping three designers aligned without re-deciding the basics.</p>
+        </div>
+        <div>
+          <h4>Faster, consistent</h4>
+          <p>New screens were assembled from existing components, which cut rework and kept the look identical from the match quiz to a booked visit.</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================== TAKEAWAYS ===================== -->
+    <section class="pc-sec">
+      <h2 class="pc-h2">What it shows.</h2>
+      <p class="pc-sub" style="max-width:760px;font-size:17px">MatchDog was my exercise in designing a full consumer product, a real IA, a multi-step flow, and a consistent visual system across a whole site, not a single screen. The matching concept also pushed me to think about <em>outcomes</em>, not just signups: the best adoption is sometimes the one you talk someone out of.</p>
+    </section>
+  </main>
+
+  <!-- ===================== MORE WORK ===================== -->
+  <section class="pc-next-wrap" id="more">
+    <div class="pc pc-next">
+      <div>
+        <span class="pc-eyebrow">Next Project</span>
+        <h2>RockX · Museum App</h2>
+        <p>An immersive, AR-led mobile companion for a rock-music museum.</p>
+      </div>
+      <a href="project2.html" class="btn-pill">View Project →</a>
+    </div>
+  </section>
+  <div class="pc pc-foot">
+    <span>&copy; 2026 Mounika Reddy Madduri</span>
+    <a href="index.html#work"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="11 6 5 12 11 18" /></svg> Back to Portfolio</a>
+  </div>
+
+  <script>
+    // Journey map: run the animation when it scrolls into view
+    document.querySelectorAll("[data-ujm]").forEach(ujm => {
+      const target = ujm.querySelector(".jm-trigger") || ujm;
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { ujm.classList.add("is-in"); io.disconnect(); } });
+      }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+      io.observe(target);
+    });
+
+    // Screen carousel: one slide at a time, arrows + dots, wraps around
+    document.querySelectorAll("[data-carousel]").forEach(car => {
+      const track = car.querySelector(".pc-car-track");
+      const slides = car.querySelectorAll(".pc-car-slide");
+      const dotsWrap = car.querySelector(".pc-car-dots");
+      const prevBtn = car.querySelector(".prev");
+      const nextBtn = car.querySelector(".next");
+      let i = 0;
+      const go = n => {
+        i = Math.max(0, Math.min(n, slides.length - 1));
+        track.style.transform = `translateX(${-i * 100}%)`;
+        if (dotsWrap) dotsWrap.querySelectorAll("button").forEach((d, k) => d.classList.toggle("is-active", k === i));
+        prevBtn.style.visibility = i === 0 ? "hidden" : "visible";
+        nextBtn.style.visibility = i === slides.length - 1 ? "hidden" : "visible";
+      };
+      if (dotsWrap) slides.forEach((_, k) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.addEventListener("click", () => go(k));
+        dotsWrap.appendChild(b);
+      });
+      car.querySelector(".prev").addEventListener("click", () => go(i - 1));
+      car.querySelector(".next").addEventListener("click", () => go(i + 1));
+      go(0);
+    });
+
+    const themeBtn = document.querySelector(".theme-toggle");
+    if (themeBtn) themeBtn.addEventListener("click", () => { const d = document.documentElement.classList.toggle("dark"); try { localStorage.setItem("theme", d ? "dark" : "light"); } catch (e) {} });
+    (function bgDots() {
+      const canvas = document.querySelector(".bg-dots"); if (!canvas) return;
+      const ctx = canvas.getContext("2d"), DPR = Math.min(2, window.devicePixelRatio || 1);
+      const GAP = 26, RAD = 110, RAD2 = RAD * RAD, STR = 2.2, SPRING = 0.06, DAMP = 0.85;
+      let W = 0, H = 0, dots = [], mx = -1e4, my = -1e4, mouseIn = false;
+      const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+      function gcol(x) { let t = Math.max(0, Math.min(1, x / (W || 1))); if (t < 0.5) { t *= 2; return `rgb(${lerp(241,142,t)},${lerp(92,51,t)},${lerp(77,224,t)})`; } t = (t - 0.5) * 2; return `rgb(${lerp(142,75,t)},${lerp(51,79,t)},${lerp(224,230,t)})`; }
+      function build() { W = window.innerWidth; H = window.innerHeight; canvas.style.width = W + "px"; canvas.style.height = H + "px"; canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0); dots = []; for (let gy = 0; gy < H + GAP; gy += GAP) for (let gx = 0; gx < W + GAP; gx += GAP) { const x = gx + (Math.random() - 0.5) * GAP * 1.25, y = gy + (Math.random() - 0.5) * GAP * 1.25; dots.push({ hx: x, hy: y, ox: 0, oy: 0, vx: 0, vy: 0, size: 0.6 + Math.random() * 1.8, a: 0.22 + Math.random() * 0.42, col: gcol(x) }); } }
+      function frame() { ctx.clearRect(0, 0, W, H); for (const d of dots) { if (mouseIn) { const ddx = (d.hx + d.ox) - mx, ddy = (d.hy + d.oy) - my, dd = ddx * ddx + ddy * ddy; if (dd < RAD2) { const dist = Math.sqrt(dd) || 1, f = (1 - dist / RAD) * STR; d.vx += (ddx / dist) * f; d.vy += (ddy / dist) * f; } } d.vx = (d.vx - d.ox * SPRING) * DAMP; d.vy = (d.vy - d.oy * SPRING) * DAMP; d.ox += d.vx; d.oy += d.vy; ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx + d.ox - d.size / 2, d.hy + d.oy - d.size / 2, d.size, d.size); } ctx.globalAlpha = 1; requestAnimationFrame(frame); }
+      build();
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) { for (const d of dots) { ctx.globalAlpha = d.a; ctx.fillStyle = d.col; ctx.fillRect(d.hx - d.size / 2, d.hy - d.size / 2, d.size, d.size); } ctx.globalAlpha = 1; }
+      else { window.addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; mouseIn = true; }); document.addEventListener("pointerleave", () => { mouseIn = false; }); requestAnimationFrame(frame); }
+      let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(build, 200); });
+    })();
+  </script>
+</body>
+
+</html>
