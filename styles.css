@@ -504,6 +504,9 @@ img.capx-img.is-active { animation: capxFloat 5.5s ease-in-out infinite; }
   .work-grid { grid-template-columns: 1fr; }
   .about-card { grid-template-columns: 1fr; padding: 32px; }
   .about-photo { height: 300px; }
+  /* breathing room between the LinkedIn icon and the "About me" button
+     (margin-top:auto collapses to almost nothing once the card is single-column) */
+  .about-content .about-more { margin-top: 22px; }
   .footer-bottom { grid-template-columns: 1fr; }
   .map-pins { gap: 60px; }
   .testi { padding: 44px 24px; }

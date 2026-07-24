@@ -107,6 +107,12 @@
       .hk-route, .hk-shock { display: none; }
       .hk-blob { width: 330px; height: 330px; }
       .hk-phone-img { width: 225px; }
+      /* the phone sits below the long hero text on phones, so the comet-in would
+         finish off-screen before you scroll to it. Rest it centred + static by
+         default (so it's never stuck hidden if JS doesn't run); the script plays
+         the comet-in via inline style once the stage scrolls into view. */
+      .hk-phone { animation: none; transform: translate(-50%, -50%); }
+      .hk-phone-img { animation: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       .hk-phone, .hk-phone-img, .hk-card, .hk-card-in, .hk-blob, .hk-route, .hk-shock { animation: none; }
@@ -630,6 +636,24 @@
   <script>
     const themeBtn = document.querySelector(".theme-toggle");
     if (themeBtn) themeBtn.addEventListener("click", () => { const d = document.documentElement.classList.toggle("dark"); try { localStorage.setItem("theme", d ? "dark" : "light"); } catch (e) {} });
+    /* On phones the hero phone rests centred & static (CSS). When its stage
+       scrolls into view, play the comet-in + float by setting the animation
+       inline (applying an animation fresh reliably restarts it). Desktop already
+       plays it on load, so this only runs at the mobile breakpoint. */
+    (function heroStageInView() {
+      const stage = document.querySelector(".hk-stage"); if (!stage) return;
+      if (!window.matchMedia || !window.matchMedia("(max-width: 900px)").matches) return;
+      const phone = stage.querySelector(".hk-phone"), img = stage.querySelector(".hk-phone-img");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          if (phone) phone.style.animation = "hk-phone-in 3.2s cubic-bezier(.5,.04,.32,1) both";
+          if (img) img.style.animation = "hk-float 7s ease-in-out 3.2s infinite";
+          io.disconnect();
+        });
+      }, { threshold: 0.35 });
+      io.observe(stage);
+    })();
     (function bgDots() {
       const canvas = document.querySelector(".bg-dots"); if (!canvas) return;
       const ctx = canvas.getContext("2d"), DPR = Math.min(2, window.devicePixelRatio || 1);

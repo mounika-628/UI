@@ -381,8 +381,15 @@ html { overflow-x: clip; }
   /* show framed screenshots full width (were shrunk to ~210px by the desktop
      `calc(100% - 180px)` rule) */
   .pc-browser.sm { max-width: 100%; }
-  /* carousel: show the whole screenshot instead of a cropped fixed-height band */
+  /* carousel: use the full card width (desktop insets 56px each side for the
+     arrows, which made these screenshots noticeably smaller than the other
+     full-width figures) and overlay the nav arrows on top instead */
   .pc-car-slide .pc-browser img { height: auto; }
+  .pc-carousel { padding: 0; }
+  .pc-car-arrow { width: 34px; height: 34px; font-size: 24px; color: #4a4a55;
+    background: rgba(255,255,255,.78); border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,.18); }
+  .pc-car-arrow.prev { left: 6px; }
+  .pc-car-arrow.next { right: 6px; }
   /* Next-project footer: stack it so the "View Project" button sits below the
      title/body on its own line instead of being squeezed on the right */
   .pc-next { flex-direction: column; align-items: flex-start; gap: 22px; }

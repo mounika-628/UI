@@ -91,6 +91,13 @@
     .mdtime { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
     .mdtime span { border: 1px solid #ece7dc; border-radius: 10px; padding: 8px 12px; font-size: 12.5px; color: #4a4a55; background: #fff; }
     .mdtime span.sel { border-color: #E8A317; background: #FEF3D7; color: #B9770A; font-weight: 600; }
+    /* on phones the 7 date chips get squeezed thin — give them a comfortable
+       width and let the row scroll sideways inside the card instead */
+    @media (max-width: 600px) {
+      .mddate-list { overflow-x: auto; scrollbar-width: none; }
+      .mddate-list::-webkit-scrollbar { display: none; }
+      .mddate-chip { flex: 0 0 auto; min-width: 58px; padding: 8px 10px 9px; }
+    }
   </style>
   <script>try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
 </head>
