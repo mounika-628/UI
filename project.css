@@ -348,6 +348,11 @@
 /* ===================== SMALL PHONES (case-study pages, all sizes) ===================== */
 @media (max-width: 600px) {
   :root { --pad: 16px; }
+  /* nav: drop the middle breadcrumb and keep Back + Contact on one tidy row
+     (otherwise "Back to Home" wraps to 3 lines and the Contact button is cut off) */
+  .pc-crumb { display: none; }
+  .pc-back { white-space: nowrap; }
+  .pc-nav-inner { gap: 12px; }
   .pc-sec { padding: 60px 0; }
   .pc-hero { padding: 56px var(--pad) 60px; gap: 34px; }
   .pc-title { font-size: clamp(40px, 15vw, 68px); }

@@ -497,6 +497,11 @@ img.capx-img.is-active { animation: capxFloat 5.5s ease-in-out infinite; }
   .footer-bottom { grid-template-columns: 1fr; }
   .map-pins { gap: 60px; }
   .testi { padding: 44px 24px; }
+  /* fly-orb delight layers are desktop-only: they animate across the full page
+     width and cause phantom horizontal scroll on phones. Hiding them is safe —
+     the colour reveals (card fill, dot lighting, trio play, CTA gradient) are
+     driven by scroll progress in JS, not by the orbs. */
+  .flyorbs, .flyorbs2, .flyorbs3, .flyorbs4, .flyorbs5, .flyorbs6 { display: none; }
 }
 @media (max-width: 560px) {
   .footer-cols { grid-template-columns: 1fr 1fr; }
