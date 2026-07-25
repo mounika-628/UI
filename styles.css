@@ -378,13 +378,9 @@ img.capx-img.is-active { animation: capxFloat 5.5s ease-in-out infinite; }
 .card-shot { position: relative; margin-top: auto; height: 360px; width: 100%; margin-inline: auto; background: rgba(255,255,255,.16); border-radius: 16px 16px 0 0; display: grid; place-items: center; overflow: hidden; }
 .card-shot span { font-size: 14px; opacity: .85; }
 .card-shot:has(img) { background: transparent; margin-inline: -28px; width: calc(100% + 56px); }
-/* Show the whole mockup, centred at the bottom of the card (was a 132% "peek"
-   crop that chopped the mockup on one side). Applies at all widths. */
-.card-shot img { position: absolute; left: 50%; right: auto; bottom: 0; transform: translateX(-50%); width: 100%; max-width: none; height: auto; object-fit: contain; object-position: center bottom; display: block; }
-.card-blue .card-shot img { right: auto; }
-/* the purple mockup is a tall portrait phone — size it by height so the whole
-   phone fits (sizing by width would make it taller than the card and clip the top) */
-.card-purple .card-shot img { width: auto; height: 100%; right: auto; left: 50%; top: auto; bottom: 0; transform: translateX(-50%); object-fit: contain; object-position: center bottom; max-height: none; }
+.card-shot img { position: absolute; right: 0; bottom: 0; width: 132%; max-width: none; height: auto; object-fit: contain; object-position: right bottom; display: block; }
+.card-blue .card-shot img { right: 8%; }
+.card-purple .card-shot img { width: 70%; height: auto; right: auto; left: 50%; top: 34px; bottom: auto; transform: translateX(-50%); object-fit: cover; object-position: top center; max-height: none; }
 
 /* ===================== STATS / MAP ===================== */
 .stats { max-width: var(--maxw); margin: 140px auto 0; text-align: center; }
@@ -502,6 +498,11 @@ img.capx-img.is-active { animation: capxFloat 5.5s ease-in-out infinite; }
   .service-body { grid-template-columns: 1fr; }
   .service-list { padding-left: 0; }
   .work-grid { grid-template-columns: 1fr; }
+  /* On phones the desktop "peek" crop chops the mockup in half once cards stack
+     full-width, so show the whole mockup centred at the bottom instead. */
+  .card-shot img { width: 100%; left: 50%; right: auto; transform: translateX(-50%); object-position: center bottom; }
+  .card-blue .card-shot img { right: auto; }
+  .card-purple .card-shot img { width: 78%; top: auto; bottom: 0; object-position: center bottom; }
   .about-card { grid-template-columns: 1fr; padding: 32px; }
   .about-photo { height: 300px; }
   /* breathing room between the LinkedIn icon and the "About me" button
